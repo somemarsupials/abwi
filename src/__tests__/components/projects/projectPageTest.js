@@ -1,24 +1,19 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
 
 import { ProjectPage } from '../../../components/projects';
 
 describe('ProjectPage', () => {
   let projectPage;
-  let project;
+  let projects;
 
   beforeEach(() => {
-    project = [
-      { title: '1' },
-      { title: '2' },
-    ];
+    projects = 'list-of-projects';
   });
 
   describe('without project', () => {
     beforeEach(() => {
-      projectPage = renderer.create(
-        <ProjectPage />
-      );
+      projectPage = shallow(<ProjectPage />);
     });
 
     it('renders with error bar', () => {
@@ -28,7 +23,7 @@ describe('ProjectPage', () => {
 
   describe('with error', () => {
     beforeEach(() => {
-      projectPage = renderer.create(
+      projectPage = shallow(
         <ProjectPage error={'an error'}/>
       );
     });
@@ -40,8 +35,8 @@ describe('ProjectPage', () => {
 
   describe('with project and error', () => {
     beforeEach(() => {
-      projectPage = renderer.create(
-        <ProjectPage projects={project} error={'an error'}/>
+      projectPage = shallow(
+        <ProjectPage projects={projects} error={'an error'}/>
       );
     });
 
@@ -52,8 +47,8 @@ describe('ProjectPage', () => {
 
   describe('when passed project', () => {
     beforeEach(() => {
-      projectPage = renderer.create(
-        <ProjectPage projects={project} />
+      projectPage = shallow(
+        <ProjectPage projects={projects} />
       );
     });
 

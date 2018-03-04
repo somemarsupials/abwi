@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
 
 import { ErrorBar } from '../../../components/common';
 
@@ -8,7 +8,7 @@ describe('ErrorBar', () => {
 
   describe('when passed detailed information', () => {
     beforeEach(() => {
-      errorBar = renderer.create(
+      errorBar = shallow(
         <ErrorBar message={'Nerdy error!'} detail={'Details...'} />
       );
     });
@@ -20,7 +20,7 @@ describe('ErrorBar', () => {
 
   describe('when passed no detail', () => {
     beforeEach(() => {
-      errorBar = renderer.create(
+      errorBar = shallow(
         <ErrorBar message={'Error!'} />);
     });
 

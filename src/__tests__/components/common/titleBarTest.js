@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
 
 import { TitleBar } from '../../../components/common';
 
@@ -7,7 +7,7 @@ describe('TitleBar', () => {
   let titleBar;
 
   beforeEach(() => {
-    titleBar = renderer.create(<TitleBar text={'hello'} />);
+    titleBar = shallow(<TitleBar text={'hello'} />);
   });
 
   it('correctly renders', () => {
