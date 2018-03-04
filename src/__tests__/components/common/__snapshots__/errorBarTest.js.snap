@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorBar when passed detailed information correctly renders 1`] = `
+<div>
+  <p>
+    Nerdy error!
+  </p>
+  <p>
+    Details...
+  </p>
+</div>
+`;
+
+exports[`ErrorBar when passed no detail correctly renders 1`] = `
+<div>
+  <p>
+    Error!
+  </p>
+</div>
+`;
