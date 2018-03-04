@@ -1,12 +1,16 @@
 import React from 'react';
-import Link from '../Link.react';
 import renderer from 'react-test-renderer';
 
 import { TitleBar } from '../../../components/common';
 
 describe('TitleBar', () => {
-  it('renders correctly', () => {
-    const titleBar = renderer.create(<TitleBar text={'hello'} />);
+  let titleBar;
+
+  beforeEach(() => {
+    titleBar = renderer.create(<TitleBar text={'hello'} />);
+  });
+
+  it('correctly renders', () => {
     expect(titleBar).toMatchSnapshot();
   });
 });
