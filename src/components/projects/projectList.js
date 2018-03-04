@@ -1,12 +1,6 @@
 import React from 'react';
 
 export default function(props) {
-  let { projects } = props;
-
-  if (!projects) {
-    return null;
-  };
-
   return(
     <table>
       <thead>
@@ -15,7 +9,7 @@ export default function(props) {
         </tr>
       </thead>
       <tbody>
-        { projects.map(function(project, index) {
+        { props.projects.map(function(project, index) {
           return (
             <tr key={index}>
               <td>{project.title}</td>
