@@ -1,68 +1,88 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 
-import { Projects } from '../../containers/';
-import { TitleBar } from '../../components/common/';
+import { Projects } from '../../containers/projects';
 
 describe('Project', () => {
-  let props;
-  let projects;
-  let mockFetch;
+  let props, projects, response, mockFetch; 
 
   beforeEach(() => {
-    let json = jest.fn().mockReturnValue('data');
-    let mockFetch = jest.fn().mockReturnValue({ json: json });
-    props = { fetch: mockFetch, api: 'api' };
-    projects = mount(<Projects {...props} />);
+    props = { fetchedProjects: jest.fn(), cannotFetch: jest.fn() };
+  });
+
+  describe('when mounted', () => {
+
+    describe('when making API call', () => {
+      beforeEach(() => {
+        response = { ok: false };
+        mockFetch = jest.fn().mockReturnValue(response);
+        Object.assign(props, { api: 'api', fetch: mockFetch });
+        projects = shallow(<Projects {...props} />);
+      });
+
+      it('gets correct resource', () => {
+        expect(mockFetch).toBeCalledWith('api/project');
+      });
+    });
+
+    describe('when API call succeeds', () => {
+      beforeEach(() => {
+        response = { ok: true, json: jest.fn().mockReturnValue('data') };
+        mockFetch = jest.fn().mockReturnValue(response);
+        Object.assign(props, { fetch: mockFetch });
+        projects = shallow(<Projects {...props} />);
+      });
+
+      it('emits action with data', () => {
+        expect(props.fetchedProjects).toBeCalledWith('data');
+      });
+    });
+
+    describe('when API call throws error', () => {
+      beforeEach(() => {
+        mockFetch = jest.fn().mockImplementation(() => { 
+          throw { message: 'error' }
+        });
+        Object.assign(props, { fetch: mockFetch });
+        projects = shallow(<Projects {...props} />);
+      });
+
+      it('emits action with data', () => {
+        expect(props.cannotFetch).toBeCalledWith('error');
+      });
+    });
+
+    describe('when API call fails', () => {
+      beforeEach(() => {
+        response = { ok: false, status: 404 };
+        mockFetch = jest.fn().mockReturnValue(response);
+        Object.assign(props, { fetch: mockFetch });
+        projects = shallow(<Projects {...props} />);
+      });
+
+      it('emits action with data', () => {
+        let firstCall = props.cannotFetch.mock.calls[0];
+        expect(firstCall.pop()).toMatch(/404/);
+      });
+    });
   });
 
   describe('when rendering', () => {
-    it('renders a div', () => {
-      expect(projects.find('div').length).toBe(1);
-    });
+    let projectPage;
 
-    describe('within div', () => {
-      describe('when rendering title bar', () => {
-        let titles;
-
-        beforeEach(() => {
-          titles = projects.find(TitleBar);
-        });
-
-        it('is within div', () => {
-          expect(titles.length).toBe(1);
-        });
-
-        it('has text', () => {
-          expect(titles.props().text).toBeDefined();
-        });
+    beforeEach(() => {
+      response = { ok: false, status: 404 };
+      mockFetch = jest.fn().mockReturnValue(response);
+      Object.assign(props, { 
+        projects: [], 
+        error: 'error', 
+        fetch: mockFetch 
       });
-
-      describe('when rendering project list', () => {
-        let projectList;
-
-        beforeEach(() => {
-          projectList = projects.find(ProjectList);
-        });
-
-        it('is within div', () => {
-          expect(projectList.length).toBe(1);
-        });
-
-        it('has project data', () => {
-          expect(projectList.state().projects).toEqual('data');
-        });
-      });
+      projectPage = shallow(<Projects {...props} />);
     });
-  });
 
-  describe('before mounting', () => {
-    it('fetches from api', () => {
-      expect(props.fetch).toHaveBeenCalledWith('api/project');
-    });
-  
-    it('saves api data', () => {
-      expect(projects.state().projects).toEqual('data');
+    it('creates ProjectPage', () => {
+      expect(projectPage).toMatchSnapshot();
     });
   });
 });

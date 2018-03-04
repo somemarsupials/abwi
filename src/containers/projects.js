@@ -1,27 +1,55 @@
 import React, { Component } from 'react';
-import { TitleBar } from '../components/common/';
-import { ProjectList } from '../components/projects';
+import { connect } from 'react-redux';
 
-class Projects extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  };
+import { projectActions } from '../actions';
+import { ProjectPage } from '../components/projects';
 
-  async componentWillMount() {
-    let response = await this.props.fetch(`${this.props.api}/project`);
-    let json = await response.json();
-    this.setState({ projects: json });
+
+export class Projects extends Component {
+  async componentDidMount() {
+    let response; 
+
+    try {
+      response = await this.props.fetch(`${this.props.api}/project`);
+    } 
+    catch (error) {
+      return this.props.cannotFetch(error.message);
+    };
+
+    return response.ok
+      ? this.props.fetchedProjects(await response.json())
+      : this.props.cannotFetch(`Got status ${response.status}`);
   };
 
   render() {
     return (
-      <div>
-        <TitleBar text={'Projects'} /> 
-        <ProjectList projects={this.state.projects} />
-      </div>
+      <ProjectPage
+        projects={this.props.projects} 
+        error={this.props.error}
+      />
     );
   };
 };
 
-export default Projects;
+
+function mapStateToProps(state) {
+  return { 
+    projects: state.projects.data,
+    error: state.projects.error,
+  };
+};
+
+
+function mapDispatchToProps(dispatch) {
+  let { fetchedProjects, projectFetchFailed } = projectActions;
+  return {
+    fetchedProjects: (projects) => {
+      dispatch(fetchedProjects(projects))
+    },
+    cannotFetch: (error) => {
+      dispatch(projectFetchFailed(error))
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);
