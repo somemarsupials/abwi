@@ -9,7 +9,7 @@ describe('ErrorBar', () => {
   describe('when passed detailed information', () => {
     beforeEach(() => {
       errorBar = shallow(
-        <ErrorBar message={'Nerdy error!'} detail={'Details...'} />
+        <ErrorBar text={'Nerdy error!'} detail={'Details...'} />
       );
     });
 
@@ -21,7 +21,7 @@ describe('ErrorBar', () => {
   describe('when passed no detail', () => {
     beforeEach(() => {
       errorBar = shallow(
-        <ErrorBar message={'Error!'} />);
+        <ErrorBar text={'Error!'} />);
     });
 
     it('correctly renders', () => {

@@ -6,7 +6,7 @@ import ProjectList from './projectList';
 export default function(props) {
   if (props.error || !props.projects) {
     return (<ErrorBar 
-        message={'Could not find projects'}
+        text={'Could not find projects'}
         detail={props.error}
     />);
   };
