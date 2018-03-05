@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 import { Project, Projects } from './containers';
-import { fetchProjects } from './lib';
+import { fetcher } from './lib';
 import './App.css';
 
 const api = window.location.hostname === 'localhost'
@@ -9,11 +9,11 @@ const api = window.location.hostname === 'localhost'
   : 'https://http://abwi.herokuapp.com';
 
 let buildProjects = function(props) { 
-  return <Projects {...props} fetch={fetchProjects} api={api} /> 
+  return <Projects {...props} fetch={fetcher} api={api} /> 
 };
 
 let buildProject = function(props) { 
-  return <Project {...props} fetch={fetchProjects} api={api} /> 
+  return <Project {...props} fetch={fetcher} api={api} /> 
 };
 
 class App extends Component {

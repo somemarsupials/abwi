@@ -18,7 +18,7 @@ describe('Project', () => {
 
     it('calls fetch function', () => {
       expect(props.fetch).toHaveBeenCalledWith(
-        'api', props.success, props.fail
+        'api/project', props.success, props.fail
       );
     });
   });

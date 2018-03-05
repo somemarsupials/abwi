@@ -1,8 +1,8 @@
-export default async function(api, success, fail, fetcher) {
+export default async function(route, success, fail, fetcher) {
   fetcher = fetcher || fetch;
 
   try {
-    let response = await fetcher(`${api}/project`);
+    let response = await fetcher(route);
     return response.ok
       ? success(await response.json())
       : fail(`Got status ${response.status}`);

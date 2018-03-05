@@ -1,6 +1,6 @@
-import { fetchProjects } from '../../lib';
+import { fetcher } from '../../lib';
 
-describe('fetchProject', () => {
+describe('fetcher', () => {
   let api, success, fail, response, mockFetch;
 
   beforeEach(() => {
@@ -13,11 +13,11 @@ describe('fetchProject', () => {
     beforeEach(() => {
       response = { ok: false };
       mockFetch = jest.fn().mockReturnValue(response);
-      fetchProjects(api, success, fail, mockFetch);
+      fetcher(api, success, fail, mockFetch);
     });
 
     it('gets correct resource', () => {
-      expect(mockFetch).toBeCalledWith('api/project');
+      expect(mockFetch).toBeCalledWith('api');
     });
   });
 
@@ -25,7 +25,7 @@ describe('fetchProject', () => {
     beforeEach(() => {
       response = { ok: true, json: jest.fn().mockReturnValue('data') };
       mockFetch = jest.fn().mockReturnValue(response);
-      fetchProjects(api, success, fail, mockFetch);
+      fetcher(api, success, fail, mockFetch);
     });
 
     it('emits action with data', () => {
@@ -38,7 +38,7 @@ describe('fetchProject', () => {
       mockFetch = jest.fn().mockImplementation(() => { 
         throw { message: 'error' }
       });
-      fetchProjects(api, success, fail, mockFetch);
+      fetcher(api, success, fail, mockFetch);
     });
 
     it('emits action with data', () => {
@@ -50,7 +50,7 @@ describe('fetchProject', () => {
     beforeEach(() => {
       response = { ok: false, status: 404 };
       mockFetch = jest.fn().mockReturnValue(response);
-      fetchProjects(api, success, fail, mockFetch);
+      fetcher(api, success, fail, mockFetch);
     });
 
     it('emits action with data', () => {
