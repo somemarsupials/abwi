@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProjectPage when passed project correctly renders 1`] = `
+exports[`ProjectsOverview when passed project correctly renders 1`] = `
 <div>
   <Component
     text="Projects"
@@ -11,21 +11,21 @@ exports[`ProjectPage when passed project correctly renders 1`] = `
 </div>
 `;
 
-exports[`ProjectPage with error renders with error bar 1`] = `
+exports[`ProjectsOverview with error renders with error bar 1`] = `
 <Component
   detail="an error"
   message="Could not find projects"
 />
 `;
 
-exports[`ProjectPage with project and error renders with error bar 1`] = `
+exports[`ProjectsOverview with project and error renders with error bar 1`] = `
 <Component
   detail="an error"
   message="Could not find projects"
 />
 `;
 
-exports[`ProjectPage without project renders with error bar 1`] = `
+exports[`ProjectsOverview without project renders with error bar 1`] = `
 <Component
   message="Could not find projects"
 />

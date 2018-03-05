@@ -2,28 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { projectActions } from '../actions';
-import { ProjectPage } from '../components/projects';
+import { ProjectsOverview } from '../components/projects';
 
 
 export class Projects extends Component {
   async componentDidMount() {
-    let response; 
-
-    try {
-      response = await this.props.fetch(`${this.props.api}/project`);
-    } 
-    catch (error) {
-      return this.props.cannotFetch(error.message);
-    };
-
-    return response.ok
-      ? this.props.fetchedProjects(await response.json())
-      : this.props.cannotFetch(`Got status ${response.status}`);
+    let { api, success, fail } = this.props;
+    this.props.fetch(api, success, fail);
   };
 
   render() {
     return (
-      <ProjectPage
+      <ProjectsOverview
         projects={this.props.projects} 
         error={this.props.error}
       />
@@ -43,10 +33,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   let { fetchedProjects, projectFetchFailed } = projectActions;
   return {
-    fetchedProjects: (projects) => {
+    success: (projects) => {
       dispatch(fetchedProjects(projects))
     },
-    cannotFetch: (error) => {
+    fail: (error) => {
       dispatch(projectFetchFailed(error))
     },
   };
