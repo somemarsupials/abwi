@@ -8,7 +8,7 @@ import { ProjectsOverview } from '../components/projects';
 export class Projects extends Component {
   async componentDidMount() {
     let { api, success, fail } = this.props;
-    this.props.fetch(api, success, fail);
+    this.props.fetch(`${api}/projects`, success, fail);
   };
 
   render() {
