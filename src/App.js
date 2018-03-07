@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
-import { Project, Projects } from './containers';
-import { fetcher } from './lib';
+import { ProjectsContainer } from './containers';
 import './App.css';
 
-const api = window.location.hostname === 'localhost'
-  ? 'http://localhost:5000'
-  : 'https://http://abwi.herokuapp.com';
+let api;
 
-let buildProjects = function(props) { 
-  return <Projects {...props} fetch={fetcher} api={api} /> 
+if (window.location.hostname === 'localhost') {
+  api = 'http://localhost:5000';
+} else {
+  api = 'https://http://abwi.herokuapp.com';
 };
 
-let buildProject = function(props) { 
-  return <Project {...props} fetch={fetcher} api={api} /> 
+let buildProjects = function(props) { 
+  return <ProjectsContainer {...props} />
 };
 
 class App extends Component {
@@ -23,13 +22,13 @@ class App extends Component {
         <div>
           <nav>
             <ul>
-              <li><Link to="/project">Projects</Link></li>
+              <li><Link to="/projects">Projects</Link></li>
             </ul>
           </nav>
 
           <div>
-            <Route exact path="/project/:id" component={buildProject} />
-            <Route exact path="/project" component={buildProjects} />
+            <Route exact path="/projects/:id" component={buildProjects} />
+            <Route exact path="/projects" component={buildProjects} />
           </div>
         </div>
       </BrowserRouter>
@@ -38,3 +37,4 @@ class App extends Component {
 };
 
 export default App;
+export { api };
