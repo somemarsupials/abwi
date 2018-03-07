@@ -1,25 +1,22 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Projects } from '../../containers/projects';
+import { ProjectsContainer } from '../../containers/projectsContainer';
 
 describe('Project', () => {
   let props, projects, mockFetch;
 
   beforeEach(() => {
-    props = { fetch: jest.fn(), success: jest.fn(), fail: jest.fn() };
+    props = { fetchProjects: jest.fn() };
   });
 
   describe('when mounted', () => {
     beforeEach(() => {
-      Object.assign(props, { api: 'api' });
-      projects = shallow(<Projects {...props} />);
+      projects = shallow(<ProjectsContainer {...props} />);
     });
 
     it('calls fetch function', () => {
-      expect(props.fetch).toHaveBeenCalledWith(
-        'api/projects', props.success, props.fail
-      );
+      expect(props.fetchProjects).toHaveBeenCalled();
     });
   });
 
@@ -31,8 +28,9 @@ describe('Project', () => {
       Object.assign(props, { 
         projects: [], 
         error: 'error', 
+        fetching: false,
       });
-      projects = shallow(<Projects {...props} />);
+      projects = shallow(<ProjectsContainer {...props} />);
     });
 
     it('creates ProjectPage', () => {
