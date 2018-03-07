@@ -1,17 +1,35 @@
-import types from '../actions/types';
+import { combineReducers } from 'redux';
+import { actions } from '../actions/projects';
 
-const initial = {
-  projects: [],
-  error: undefined,
-};
-
-export default function(state = initial, action) {
+function fetching(state = false, action) {
   switch (action.type) {
-    case types.GOT_PROJECTS:
-      return Object.assign({}, state, { data: action.projects });
-    case types.PROJECT_FETCH_FAILED:
-      return Object.assign({}, state,  { error: action.error });
+    case actions.FETCHING:
+      return action.isFetching;
     default:
       return state;
   }
-}
+};
+
+function fetchSuccess(state = [], action) {
+  switch (action.type) {
+    case actions.FETCH_SUCCESS:
+      return action.data;
+    default:
+      return state;
+  }
+};
+
+function fetchFail(state = null, action) {
+  switch (action.type) {
+    case actions.FETCH_FAIL:
+      return action.error;
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({
+  fetching: fetching,
+  data: fetchSuccess,
+  error: fetchFail,
+});

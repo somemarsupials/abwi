@@ -1,17 +1,59 @@
-import types from './types';
+import { api } from '../App';
 
-export default {
-  fetchedProjects: function(projects) {
-    return {
-      type: types.GOT_PROJECTS,
-      projects: projects,
-    }
-  },
+export const actions = {
+  FETCHING: 'FETCHING',
+  FETCH_SUCCESS: 'FETCH_SUCCESS',
+  FETCH_FAIL: 'FETCH_FAIL',
+};
 
-  projectFetchFailed: function(error) {
-    return {
-      type: types.PROJECT_FETCH_FAILED,
-      error: error,
+async function makeRequest() {
+  return await fetch(`${api}/projects`);
+};
+
+export function projectsLoading(bool) {
+  return {
+    type: actions.FETCHING,
+    isFetching: bool,
+  };
+};
+
+export function projectsFetched(data) {
+  return {
+    type: actions.FETCH_SUCCESS,
+    data: data,
+  };
+};
+
+export function projectsNotFetched(error) {
+  return {
+    type: actions.FETCH_FAIL,
+    error: error,
+  };
+};
+
+export function fetchProjects() {
+  return async (dispatch) => {
+    let response, data, error;
+    dispatch(projectsLoading(true));
+
+    try {
+      response = await makeRequest();
+      data = await response.json();
+    } 
+    catch (e) {
+      error = e;
     };
-  },
+
+    dispatch(projectsLoading(false));
+
+    if (!error && !response.ok) {
+      error = response.ok;
+    };
+
+    if (error) {
+      dispatch(projectsNotFetched(error));
+    } else {
+      dispatch(projectsFetched(data));
+    };
+  };
 };

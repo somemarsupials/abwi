@@ -1,1 +1,1 @@
-export { default as projectActions } from './projects';
+export { fetchProjects } from './projects';
