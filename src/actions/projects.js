@@ -41,7 +41,7 @@ export function fetchProjects() {
       data = await response.json();
     } 
     catch (e) {
-      error = e;
+      error = e.message;
     };
 
     dispatch(projectsLoading(false));
