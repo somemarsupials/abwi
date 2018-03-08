@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SiteLinks when passed detailed information correctly renders 1`] = `
+<ul
+  className="nav navbar-nav"
+>
+  <li>
+    <Link
+      replace={false}
+      to="/projects"
+    >
+      Projects
+    </Link>
+  </li>
+</ul>
+`;
