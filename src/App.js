@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { Header } from './components/header';
 import { ProjectsContainer } from './containers';
 import './App.css';
 
@@ -11,24 +12,14 @@ if (window.location.hostname === 'localhost') {
   api = 'https://http://abwi.herokuapp.com';
 };
 
-let buildProjects = function(props) { 
-  return <ProjectsContainer {...props} />
-};
-
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div>
-          <nav>
-            <ul>
-              <li><Link to="/projects">Projects</Link></li>
-            </ul>
-          </nav>
-
-          <div>
-            <Route exact path="/projects/:id" component={buildProjects} />
-            <Route exact path="/projects" component={buildProjects} />
+          <Header />
+          <div className="App">
+            <Route exact path="/projects" component={ProjectsContainer} />
           </div>
         </div>
       </BrowserRouter>
