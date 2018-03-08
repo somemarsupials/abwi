@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TitleBar correctly renders 1`] = `
-<h1>
-  hello
-</h1>
+<div
+  className="page-header"
+>
+  <h1>
+    hello
+  </h1>
+</div>
 `;
