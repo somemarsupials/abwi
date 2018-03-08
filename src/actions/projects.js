@@ -38,16 +38,16 @@ export function fetchProjects() {
 
     try {
       response = await makeRequest();
-      data = await response.json();
     } 
     catch (e) {
       error = e.message;
     };
 
     dispatch(projectsLoading(false));
+    error = error || !response.ok && response.status;
 
-    if (!error && !response.ok) {
-      error = response.ok;
+    if (!error) {
+      data = await response.json();
     };
 
     if (error) {
