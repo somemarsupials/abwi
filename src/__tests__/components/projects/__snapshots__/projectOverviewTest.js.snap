@@ -12,21 +12,36 @@ exports[`ProjectsOverview when passed project correctly renders 1`] = `
 `;
 
 exports[`ProjectsOverview with error renders with error bar 1`] = `
-<Component
-  detail="an error"
-  text="Could not find projects"
-/>
+<div>
+  <Component
+    text="Projects"
+  />
+  <Component
+    detail="an error"
+    text="Could not find projects"
+  />
+</div>
 `;
 
 exports[`ProjectsOverview with project and error renders with error bar 1`] = `
-<Component
-  detail="an error"
-  text="Could not find projects"
-/>
+<div>
+  <Component
+    text="Projects"
+  />
+  <Component
+    detail="an error"
+    text="Could not find projects"
+  />
+</div>
 `;
 
 exports[`ProjectsOverview without project renders with error bar 1`] = `
-<Component
-  text="Could not find projects"
-/>
+<div>
+  <Component
+    text="Projects"
+  />
+  <Component
+    text="Could not find projects"
+  />
+</div>
 `;
