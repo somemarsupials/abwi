@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { actions } from '../actions/project';
+import { actions } from '../actions/projects';
 
 function fetching(state = false, action) {
   switch (action.type) {
@@ -10,7 +10,7 @@ function fetching(state = false, action) {
   }
 };
 
-function fetchSuccess(state = null, action) {
+function fetchSuccess(state = [], action) {
   switch (action.type) {
     case actions.FETCH_SUCCESS:
       return action.data;
