@@ -1,49 +1,49 @@
 import { api } from '../App';
 
 export const actions = {
-  FETCHING: 'PROJECT_FETCHING',
-  FETCH_SUCCESS: 'PROJECT_FETCH_SUCCESS',
-  FETCH_FAIL: 'PROJECT_FETCH_FAIL',
+  FETCHING: 'PROJECTS_FETCHING',
+  FETCH_SUCCESS: 'PROJECTS_FETCH_SUCCESS',
+  FETCH_FAIL: 'PROJECTS_FETCH_FAIL',
 };
 
-async function makeRequest(id) {
-  return await fetch(`${api}/projects/${id}?detail=true`);
+async function makeRequest() {
+  return await fetch(`${api}/projects`);
 };
 
-export function projectLoading(bool) {
+export function projectsLoading(bool) {
   return {
     type: actions.FETCHING,
     isFetching: bool,
   };
 };
 
-export function projectFetched(data) {
+export function projectsFetched(data) {
   return {
     type: actions.FETCH_SUCCESS,
     data: data,
   };
 };
 
-export function projectNotFetched(error) {
+export function projectsNotFetched(error) {
   return {
     type: actions.FETCH_FAIL,
     error: error,
   };
 };
 
-export function fetchProject(id) {
+export function fetchProjects() {
   return async (dispatch) => {
     let response, data, error;
-    dispatch(projectLoading(true));
+    dispatch(projectsLoading(true));
 
     try {
-      response = await makeRequest(id);
+      response = await makeRequest();
     } 
     catch (e) {
       error = e.message;
     };
 
-    dispatch(projectLoading(false));
+    dispatch(projectsLoading(false));
     error = error || !response.ok && response.status;
 
     if (!error) {
@@ -51,9 +51,9 @@ export function fetchProject(id) {
     };
 
     if (error) {
-      dispatch(projectNotFetched(error));
+      dispatch(projectsNotFetched(error));
     } else {
-      dispatch(projectFetched(data));
+      dispatch(projectsFetched(data));
     };
   };
 };
