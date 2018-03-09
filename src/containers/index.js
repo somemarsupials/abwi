@@ -1,2 +1,2 @@
 export { default as ProjectsContainer } from './projectsContainer';
-export { default as Project } from './project';
+export { default as ProjectContainer } from './projectContainer';
