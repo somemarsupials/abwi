@@ -1,2 +1,2 @@
-export { fetchProjects } from './projects';
-export { fetchProject } from './project';
+export { fetchProjects } from './allProjects';
+export { fetchProject } from './projects';

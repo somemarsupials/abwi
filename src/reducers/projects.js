@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { actions } from '../actions/project';
+import { actions } from '../actions/projects';
 
 function fetching(state = false, action) {
   switch (action.type) {

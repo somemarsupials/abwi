@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import allProjectReducer from './allProjects';
+import allProjectsReducer from './allProjects';
 import projectsReducer from './projects';
 
 export default combineReducers({
