@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List without project renders with error bar 1`] = `
+<table
+  className="table"
+>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      key="0"
+    >
+      <td>
+        project 1
+      </td>
+    </tr>
+    <tr
+      key="1"
+    >
+      <td>
+        project 2
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

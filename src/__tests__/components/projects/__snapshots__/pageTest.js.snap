@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page when passed project correctly renders 1`] = `
+<div>
+  <Component
+    text={null}
+  />
+  <Component
+    project="a-project"
+  />
+</div>
+`;
+
+exports[`Page with error renders with error bar 1`] = `
+<div>
+  <Component
+    text={null}
+  />
+  <Component
+    detail="an error"
+    text="Could not load project"
+  />
+</div>
+`;
+
+exports[`Page with project and error renders with error bar 1`] = `
+<div>
+  <Component
+    text={null}
+  />
+  <Component
+    detail="an error"
+    text="Could not load project"
+  />
+</div>
+`;
+
+exports[`Page without project renders with error bar 1`] = `
+<div>
+  <Component
+    text={null}
+  />
+  <Component
+    text="Could not load project"
+  />
+</div>
+`;

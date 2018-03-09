@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { TitleBar, ErrorBar, InfoBar } from '../common/';
-import ProjectList from './projectList';
+import List from './list';
 
 export default function(props) {
   let error = props.error || !props.projects;
@@ -16,7 +16,7 @@ export default function(props) {
         <InfoBar text={'Fetching projects...'} />
       }
       { !error && !props.fetching &&
-        <ProjectList projects={props.projects} />
+        <List projects={props.projects} />
       }
     </div>
   );

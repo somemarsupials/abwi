@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProjectList without project renders with error bar 1`] = `
-<table>
+exports[`List without project renders with error bar 1`] = `
+<table
+  className="table"
+>
   <thead>
     <tr>
       <th>

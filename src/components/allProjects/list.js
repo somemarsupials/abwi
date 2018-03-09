@@ -1,18 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function(props) {
+  let projects = props.projects || [];
+
   return(
-    <table>
+    <table className="table">
       <thead>
         <tr>
           <th>Name</th>
         </tr>
       </thead>
       <tbody>
-        { props.projects.map(function(project, index) {
+        { projects.map(function(project, index) {
           return (
             <tr key={index}>
-              <td>{project.title}</td>
+              <td>
+                <Link to={`/projects/${project.id}`}>{project.title}</Link>
+              </td>
             </tr>
           );
         })}

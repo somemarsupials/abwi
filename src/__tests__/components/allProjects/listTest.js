@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { ProjectList } from '../../../components/projects';
+import { List } from '../../../components/allProjects';
 
-describe('ProjectList', () => {
-  let projectList;
+describe('List', () => {
+  let list;
   let projects;
 
   beforeEach(() => {
@@ -13,11 +13,11 @@ describe('ProjectList', () => {
 
   describe('without project', () => {
     beforeEach(() => {
-      projectList = shallow(<ProjectList projects={projects} />);
+      list = shallow(<List projects={projects} />);
     });
 
     it('renders with error bar', () => {
-      expect(projectList).toMatchSnapshot();
+      expect(list).toMatchSnapshot();
     });
   });
 });
