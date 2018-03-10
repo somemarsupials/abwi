@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Project when rendering creates ProjectPage 1`] = `
+<Component
+  error="error"
+  fetching={false}
+  project={
+    Object {
+      "obj": "props",
+    }
+  }
+/>
+`;
