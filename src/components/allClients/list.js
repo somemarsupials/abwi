@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function(props) {
-  if (!props.clients || props.clients.length == 0) {
+  if (!props.clients || props.clients.length === 0) {
     return (<span>No clients found</span>);
   };
 

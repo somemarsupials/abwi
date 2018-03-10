@@ -31,7 +31,7 @@ export function clientsNotFetched(error) {
   };
 };
 
-export function fetchClients() {
+export function fetchClients(request = makeRequest) {
   return async (dispatch) => {
     let response, data, error;
     dispatch(clientsLoading(true));
@@ -44,7 +44,7 @@ export function fetchClients() {
     };
 
     dispatch(clientsLoading(false));
-    error = error || !response.ok && response.status;
+    error = error || (!response.ok && response.status);
 
     if (!error) {
       data = await response.json();

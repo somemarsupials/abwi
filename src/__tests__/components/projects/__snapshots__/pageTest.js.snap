@@ -1,47 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Page when passed project correctly renders 1`] = `
+exports[`Page when finished loading correctly renders 1`] = `
 <div>
   <Component
     text={null}
   />
   <Component
-    project="a-project"
+    project="project"
+  />
+</div>
+`;
+
+exports[`Page when loading renders with loading information 1`] = `
+<div>
+  <Component
+    text={null}
+  />
+  <Component
+    text="Fetching project..."
+  />
+  <Component
+    detail={null}
+    text="Could not load project"
   />
 </div>
 `;
 
 exports[`Page with error renders with error bar 1`] = `
 <div>
-  <Component
-    text={null}
-  />
+  <Component />
   <Component
     detail="an error"
     text="Could not load project"
   />
-</div>
-`;
-
-exports[`Page with project and error renders with error bar 1`] = `
-<div>
-  <Component
-    text={null}
-  />
-  <Component
-    detail="an error"
-    text="Could not load project"
-  />
-</div>
-`;
-
-exports[`Page without project renders with error bar 1`] = `
-<div>
-  <Component
-    text={null}
-  />
-  <Component
-    text="Could not load project"
-  />
+  <Component />
 </div>
 `;

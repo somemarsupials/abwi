@@ -44,7 +44,7 @@ export function fetchProjects() {
     };
 
     dispatch(projectsLoading(false));
-    error = error || !response.ok && response.status;
+    error = error || (!response.ok && response.status);
 
     if (!error) {
       data = await response.json();

@@ -8,17 +8,7 @@ describe('Page', () => {
   let project;
 
   beforeEach(() => {
-    project = 'a-project';
-  });
-
-  describe('without project', () => {
-    beforeEach(() => {
-      page = shallow(<Page />);
-    });
-
-    it('renders with error bar', () => {
-      expect(page).toMatchSnapshot();
-    });
+    project = 'project';
   });
 
   describe('with error', () => {
@@ -32,20 +22,19 @@ describe('Page', () => {
     });
   });
 
-  describe('with project and error', () => {
+  describe('when loading', () => {
     beforeEach(() => {
-      page = shallow(<Page project={project} error={'an error'}/>
-      );
+      page = shallow(<Page project={null} fetching={true} error={null} />);
     });
 
-    it('renders with error bar', () => {
+    it('renders with loading information', () => {
       expect(page).toMatchSnapshot();
     });
   });
 
-  describe('when passed project', () => {
+  describe('when finished loading', () => {
     beforeEach(() => {
-      page = shallow(<Page project={project} />
+      page = shallow(<Page loading={false} project={project} />
       );
     });
 
