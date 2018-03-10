@@ -11,30 +11,9 @@ describe('Page', () => {
     projects = 'list-of-projects';
   });
 
-  describe('without project', () => {
-    beforeEach(() => {
-      page = shallow(<Page />);
-    });
-
-    it('renders with error bar', () => {
-      expect(page).toMatchSnapshot();
-    });
-  });
-
   describe('with error', () => {
     beforeEach(() => {
       page = shallow(<Page error={'an error'}/>
-      );
-    });
-
-    it('renders with error bar', () => {
-      expect(page).toMatchSnapshot();
-    });
-  });
-
-  describe('with project and error', () => {
-    beforeEach(() => {
-      page = shallow(<Page projects={projects} error={'an error'}/>
       );
     });
 
@@ -53,19 +32,9 @@ describe('Page', () => {
     });
   });
 
-  describe('when loading and error', () => {
+  describe('when not loading', () => {
     beforeEach(() => {
-      page = shallow(<Page error={'an error'} loading={true} />);
-    });
-
-    it('renders with error bar', () => {
-      expect(page).toMatchSnapshot();
-    });
-  });
-
-  describe('when passed project', () => {
-    beforeEach(() => {
-      page = shallow(<Page projects={projects} />
+      page = shallow(<Page loading={false} projects={projects} />
       );
     });
 

@@ -9,13 +9,13 @@ export default function(props) {
   return (
     <div>
       <TitleBar text={'Projects'} /> 
-      { error &&
-        <ErrorBar text={'Could not find projects'} detail={props.error} />
-      }
-      { !error && props.fetching && 
+      { props.fetching &&
         <InfoBar text={'Fetching projects...'} />
       }
-      { !error && !props.fetching &&
+      { error &&
+        <ErrorBar text={'Could not load projects'} detail={props.error} />
+      }
+      { !props.fetching &&
         <List projects={props.projects} />
       }
     </div>

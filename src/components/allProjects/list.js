@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function(props) {
-  let projects = props.projects || [];
+  if (!props.projects || props.projects.length == 0) {
+    return (<span>No projects found</span>);
+  };
 
   return(
     <table className="table">
@@ -12,7 +14,7 @@ export default function(props) {
         </tr>
       </thead>
       <tbody>
-        { projects.map(function(project, index) {
+        { props.projects.map(function(project, index) {
           return (
             <tr key={index}>
               <td>
