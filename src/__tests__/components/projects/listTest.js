@@ -5,18 +5,28 @@ import { List } from '../../../components/allProjects';
 
 describe('List', () => {
   let list;
-  let projects;
+  let items;
 
   beforeEach(() => {
-    projects = [{ title: 'project 1' }, { title: 'project 2' }];
+    items = ['item 1', 'item 2']
   });
 
-  describe('without project', () => {
+  describe('without items', () => {
     beforeEach(() => {
-      list = shallow(<List projects={projects} />);
+      list = shallow(<List />);
     });
 
     it('renders with error bar', () => {
+      expect(list).toMatchSnapshot();
+    });
+  });
+
+  describe('without items', () => {
+    beforeEach(() => {
+      list = shallow(<List items={items} />);
+    });
+
+    it('renders with items', () => {
       expect(list).toMatchSnapshot();
     });
   });
