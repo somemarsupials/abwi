@@ -24,7 +24,7 @@ describe('Page', () => {
 
   describe('when loading', () => {
     beforeEach(() => {
-      page = shallow(<Page loading={true} />);
+      page = shallow(<Page projects={[]} fetching={true} error={null} />);
     });
 
     it('renders with loading information', () => {
@@ -32,7 +32,7 @@ describe('Page', () => {
     });
   });
 
-  describe('when not loading', () => {
+  describe('when finished loading', () => {
     beforeEach(() => {
       page = shallow(<Page loading={false} projects={projects} />
       );

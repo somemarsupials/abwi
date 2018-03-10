@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { ProjectsContainer } from '../../containers/projectsContainer';
 
 describe('Project', () => {
-  let props, projects, mockFetch;
+  let props, projects;
 
   beforeEach(() => {
     props = { fetchProjects: jest.fn() };
@@ -22,8 +22,6 @@ describe('Project', () => {
 
 
   describe('when rendering', () => {
-    let mockFetch, projectPage;
-
     beforeEach(() => {
       Object.assign(props, { 
         projects: [], 

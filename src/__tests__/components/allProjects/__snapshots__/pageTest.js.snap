@@ -1,24 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Page when loading renders with loading information 1`] = `
-<div>
-  <Component
-    text="Projects"
-  />
-  <Component
-    text="Could not load projects"
-  />
-  <Component />
-</div>
-`;
-
-exports[`Page when not loading correctly renders 1`] = `
+exports[`Page when finished loading correctly renders 1`] = `
 <div>
   <Component
     text="Projects"
   />
   <Component
     projects="list-of-projects"
+  />
+</div>
+`;
+
+exports[`Page when loading renders with loading information 1`] = `
+<div>
+  <Component
+    text="Projects"
+  />
+  <Component
+    text="Fetching projects..."
   />
 </div>
 `;

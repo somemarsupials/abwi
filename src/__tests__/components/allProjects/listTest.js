@@ -8,7 +8,7 @@ describe('List', () => {
   let projects;
 
   beforeEach(() => {
-    projects = [{ title: 'project 1' }, { title: 'project 2' }];
+    projects = [{ title: 'project 1', id: 1 }, { title: 'project 2', id: 2}];
   });
 
   describe('without projects', () => {

@@ -18,7 +18,7 @@ exports[`List with projects renders with projects 1`] = `
       <td>
         <Link
           replace={false}
-          to="/projects/undefined"
+          to="/projects/1"
         >
           project 1
         </Link>
@@ -30,7 +30,7 @@ exports[`List with projects renders with projects 1`] = `
       <td>
         <Link
           replace={false}
-          to="/projects/undefined"
+          to="/projects/2"
         >
           project 2
         </Link>

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Client when rendering creates ClientPage 1`] = `
+<Component
+  clients={Array []}
+  error="error"
+  fetching={false}
+/>
+`;
