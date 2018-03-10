@@ -6,9 +6,11 @@ exports[`ErrorBar when passed detailed information correctly renders 1`] = `
   role="alert"
 >
   <p>
-    <b>
+    <span
+      className="font-weight-bold"
+    >
       Nerdy error!
-    </b>
+    </span>
     <span>
        | 
       Details...
@@ -23,9 +25,11 @@ exports[`ErrorBar when passed no detail correctly renders 1`] = `
   role="alert"
 >
   <p>
-    <b>
+    <span
+      className="font-weight-bold"
+    >
       Error!
-    </b>
+    </span>
   </p>
 </div>
 `;

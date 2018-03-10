@@ -1,6 +1,10 @@
 import React from 'react';
 
 export default function(props) {
-  return (<p>{props.text}</p>);
+  return (
+    <div className="alert alert-info">
+      <p>{props.text}</p>
+    </div>
+  );
 };
 

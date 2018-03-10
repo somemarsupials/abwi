@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InfoBar correctly renders 1`] = `
-<p>
-  hello
-</p>
+<div
+  className="alert alert-info"
+>
+  <p>
+    hello
+  </p>
+</div>
 `;

@@ -4,13 +4,13 @@ import { shallow } from 'enzyme';
 import { InfoBar } from '../../../components/common';
 
 describe('InfoBar', () => {
-  let titleBar;
+  let infoBar;
 
   beforeEach(() => {
-    titleBar = shallow(<InfoBar text={'hello'} />);
+    infoBar = shallow(<InfoBar text={'hello'} />);
   });
 
   it('correctly renders', () => {
-    expect(titleBar).toMatchSnapshot();
+    expect(infoBar).toMatchSnapshot();
   });
 });
