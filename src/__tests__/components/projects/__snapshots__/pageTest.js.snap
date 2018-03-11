@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Page when finished loading correctly renders 1`] = `
+exports[`Page when given projects correctly renders 1`] = `
 <div>
   <Component
     text={null}
@@ -13,15 +13,9 @@ exports[`Page when finished loading correctly renders 1`] = `
 
 exports[`Page when loading renders with loading information 1`] = `
 <div>
-  <Component
-    text={null}
-  />
+  <Component />
   <Component
     text="Fetching project..."
-  />
-  <Component
-    detail={null}
-    text="Could not load project"
   />
 </div>
 `;
@@ -33,6 +27,5 @@ exports[`Page with error renders with error bar 1`] = `
     detail="an error"
     text="Could not load project"
   />
-  <Component />
 </div>
 `;

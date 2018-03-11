@@ -13,8 +13,7 @@ describe('Page', () => {
 
   describe('with error', () => {
     beforeEach(() => {
-      page = shallow(<Page error={'an error'}/>
-      );
+      page = shallow(<Page error={'an error'}/>);
     });
 
     it('renders with error bar', () => {
@@ -24,7 +23,7 @@ describe('Page', () => {
 
   describe('when loading', () => {
     beforeEach(() => {
-      page = shallow(<Page project={null} fetching={true} error={null} />);
+      page = shallow(<Page fetching={true} />);
     });
 
     it('renders with loading information', () => {
@@ -32,10 +31,9 @@ describe('Page', () => {
     });
   });
 
-  describe('when finished loading', () => {
+  describe('when given projects', () => {
     beforeEach(() => {
-      page = shallow(<Page loading={false} project={project} />
-      );
+      page = shallow(<Page project={project} />);
     });
 
     it('correctly renders', () => {

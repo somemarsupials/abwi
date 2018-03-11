@@ -31,6 +31,5 @@ exports[`Page with error renders with error bar 1`] = `
     detail="an error"
     text="Could not load projects"
   />
-  <Component />
 </div>
 `;
