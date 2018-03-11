@@ -1,4 +1,5 @@
 import { api } from '../App';
+import { thunkGenerator } from '../lib';
 
 export const actions = {
   FETCHING: 'PROJECT_FETCHING',
@@ -6,7 +7,7 @@ export const actions = {
   FETCH_FAIL: 'PROJECT_FETCH_FAIL',
 };
 
-async function makeRequest(id) {
+async function request(id) {
   return await fetch(`${api}/projects/${id}?detail=true`);
 };
 
@@ -31,29 +32,9 @@ export function projectNotFetched(error) {
   };
 };
 
-export function fetchProject(id) {
-  return async (dispatch) => {
-    let response, data, error;
-    dispatch(projectLoading(true));
-
-    try {
-      response = await makeRequest(id);
-    } 
-    catch (e) {
-      error = e.message;
-    };
-
-    dispatch(projectLoading(false));
-    error = error || (!response.ok && response.status);
-
-    if (!error) {
-      data = await response.json();
-    };
-
-    if (error) {
-      dispatch(projectNotFetched(error));
-    } else {
-      dispatch(projectFetched(data));
-    };
-  };
-};
+export const fetchProject = thunkGenerator(
+  request,
+  projectLoading,
+  projectFetched,
+  projectNotFetched
+);

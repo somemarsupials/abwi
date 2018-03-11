@@ -1,4 +1,5 @@
 import { api } from '../App';
+import { thunkGenerator } from '../lib';
 
 export const actions = {
   FETCHING: 'CLIENTS_FETCHING',
@@ -6,7 +7,7 @@ export const actions = {
   FETCH_FAIL: 'CLIENTS_FETCH_FAIL',
 };
 
-async function makeRequest() {
+async function request() {
   return await fetch(`${api}/clients`);
 };
 
@@ -31,29 +32,9 @@ export function clientsNotFetched(error) {
   };
 };
 
-export function fetchClients(request = makeRequest) {
-  return async (dispatch) => {
-    let response, data, error;
-    dispatch(clientsLoading(true));
-
-    try {
-      response = await makeRequest();
-    } 
-    catch (e) {
-      error = e.message;
-    };
-
-    dispatch(clientsLoading(false));
-    error = error || (!response.ok && response.status);
-
-    if (!error) {
-      data = await response.json();
-    };
-
-    if (error) {
-      dispatch(clientsNotFetched(error));
-    } else {
-      dispatch(clientsFetched(data));
-    };
-  };
-};
+export const fetchClients = thunkGenerator(
+  request, 
+  clientsLoading, 
+  clientsFetched, 
+  clientsNotFetched
+);
