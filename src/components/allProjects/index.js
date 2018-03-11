@@ -1,2 +1,2 @@
-export { default as List } from './list';
-export { default as Page } from './page';
+export { default as ProjectsList } from './projectsList';
+export { default as ProjectsPage } from './projectsPage';

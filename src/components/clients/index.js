@@ -1,2 +1,2 @@
-export { default as Page } from './page';
-export { default as Detail } from './detail';
+export { default as ClientPage } from './clientPage';
+export { default as ClientDetail } from './clientDetail';

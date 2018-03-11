@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`List with projects renders with projects 1`] = `
+exports[`ProjectsList with projects renders with projects 1`] = `
 <table
   className="table"
 >
@@ -40,7 +40,7 @@ exports[`List with projects renders with projects 1`] = `
 </table>
 `;
 
-exports[`List without projects renders with message 1`] = `
+exports[`ProjectsList without projects renders with message 1`] = `
 <span>
   No projects found
 </span>

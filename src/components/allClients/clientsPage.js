@@ -1,22 +1,20 @@
 import React from 'react';
 
 import { TitleBar, ErrorBar, InfoBar } from '../common/';
-import List from './list';
+import ClientsList from './clientsList';
 
 export default function(props) {
-  let error = props.error || !props.clients;
-
   return (
     <div>
       <TitleBar text={'Clients'} />
       { props.fetching &&
         <InfoBar text={'Fetching clients...'} />
       }
-      { error &&
+      { props.error &&
         <ErrorBar text={'Could not load clients'} detail={props.error} />
       }
-      { !props.fetching &&
-        <List clients={props.clients} />
+      { props.clients &&
+        <ClientsList clients={props.clients} />
       }
     </div>
   );

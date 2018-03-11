@@ -12,5 +12,13 @@ exports[`SiteLinks when passed detailed information correctly renders 1`] = `
       Projects
     </Link>
   </li>
+  <li>
+    <Link
+      replace={false}
+      to="/clients"
+    >
+      Clients
+    </Link>
+  </li>
 </ul>
 `;

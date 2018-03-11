@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchProjects } from '../actions';
-import { Page } from '../components/allProjects';
+import { ProjectsPage } from '../components/allProjects';
 
 
 export class ProjectsContainer extends Component {
@@ -12,7 +12,7 @@ export class ProjectsContainer extends Component {
 
   render() {
     return (
-      <Page
+      <ProjectsPage
         projects={this.props.projects} 
         error={this.props.error}
         fetching={this.props.fetching}

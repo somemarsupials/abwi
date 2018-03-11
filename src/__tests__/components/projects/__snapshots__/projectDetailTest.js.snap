@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectDetail with project renders with items 1`] = `
+<div>
+  <Component
+    text="Client"
+  />
+  <span>
+    hello
+  </span>
+  <Component
+    text="Items"
+  />
+  <Component
+    items={
+      Array [
+        1,
+        2,
+      ]
+    }
+  />
+</div>
+`;

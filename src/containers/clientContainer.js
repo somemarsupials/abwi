@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchClient } from '../actions';
-import { Page } from '../components/clients';
+import { ClientPage } from '../components/clients';
 
 
 export class ClientContainer extends Component {
@@ -12,7 +12,7 @@ export class ClientContainer extends Component {
 
   render() {
     return (
-      <Page
+      <ClientPage
         client={this.props.client} 
         error={this.props.error}
         fetching={this.props.fetching}

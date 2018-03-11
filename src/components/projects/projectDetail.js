@@ -1,6 +1,6 @@
 import React from 'react';
-import { ItemList } from '../items';
 import { SectionBar } from '../common';
+import { ProjectsList } from '../allProjects';
 
 export default function(props) {
   return (
@@ -8,7 +8,7 @@ export default function(props) {
       <SectionBar text={'Client'} />
       <span>{props.project.client.name}</span>
       <SectionBar text={'Items'} />
-      <ItemList items={props.project.items}/>
+      <ProjectsList items={props.project.items}/>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Page when finished loading correctly renders 1`] = `
+exports[`ProjectsPage when finished loading correctly renders 1`] = `
 <div>
   <Component
     text="Projects"
@@ -11,7 +11,7 @@ exports[`Page when finished loading correctly renders 1`] = `
 </div>
 `;
 
-exports[`Page when loading renders with loading information 1`] = `
+exports[`ProjectsPage when loading renders with loading information 1`] = `
 <div>
   <Component
     text="Projects"
@@ -22,7 +22,7 @@ exports[`Page when loading renders with loading information 1`] = `
 </div>
 `;
 
-exports[`Page with error renders with error bar 1`] = `
+exports[`ProjectsPage with error renders with error bar 1`] = `
 <div>
   <Component
     text="Projects"

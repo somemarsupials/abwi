@@ -1,19 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Page } from '../../../components/allProjects';
+import { ProjectPage } from '../../../components/projects';
 
-describe('Page', () => {
+describe('ProjectPage', () => {
   let page;
-  let projects;
+  let project;
 
   beforeEach(() => {
-    projects = 'list-of-projects';
+    project = 'project';
   });
 
   describe('with error', () => {
     beforeEach(() => {
-      page = shallow(<Page error={'an error'}/>);
+      page = shallow(<ProjectPage error={'an error'}/>);
     });
 
     it('renders with error bar', () => {
@@ -23,7 +23,7 @@ describe('Page', () => {
 
   describe('when loading', () => {
     beforeEach(() => {
-      page = shallow(<Page fetching={true} />);
+      page = shallow(<ProjectPage fetching={true} />);
     });
 
     it('renders with loading information', () => {
@@ -31,9 +31,9 @@ describe('Page', () => {
     });
   });
 
-  describe('when finished loading', () => {
+  describe('when given projects', () => {
     beforeEach(() => {
-      page = shallow(<Page projects={projects} />);
+      page = shallow(<ProjectPage project={project} />);
     });
 
     it('correctly renders', () => {

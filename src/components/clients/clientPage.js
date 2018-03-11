@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { TitleBar, InfoBar, ErrorBar } from '../common/';
-import Detail from './detail';
+import ClientDetail from './clientDetail';
 
 export default function(props) {
   let title = props.client && (props.client.name || null);
@@ -16,7 +16,7 @@ export default function(props) {
         <ErrorBar text={'Could not load client'} detail={props.error} />
       }
       { props.client &&
-        <Detail client={props.client} />
+        <ClientDetail client={props.client} />
       }
     </div>
   );

@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { TitleBar, InfoBar, ErrorBar } from '../common/';
-import Detail from './detail';
+import ProjectDetail from './projectDetail';
 
 export default function(props) {
-  let error = props.error || !props.project;
   let title = props.project && (props.project.title || null);
 
   return (
@@ -13,11 +12,11 @@ export default function(props) {
       { props.fetching && 
         <InfoBar text={'Fetching project...'} />
       }
-      { error &&
+      { props.error &&
         <ErrorBar text={'Could not load project'} detail={props.error} />
       }
-      { !props.fetching &&
-        <Detail project={props.project} />
+      { props.project &&
+        <ProjectDetail project={props.project} />
       }
     </div>
   );

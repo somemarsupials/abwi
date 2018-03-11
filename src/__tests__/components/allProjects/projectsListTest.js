@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { List } from '../../../components/allProjects';
+import { ProjectsList } from '../../../components/allProjects';
 
-describe('List', () => {
+describe('ProjectsList', () => {
   let list;
   let projects;
 
@@ -13,7 +13,7 @@ describe('List', () => {
 
   describe('without projects', () => {
     beforeEach(() => {
-      list = shallow(<List />);
+      list = shallow(<ProjectsList />);
     });
 
     it('renders with message', () => {
@@ -23,7 +23,7 @@ describe('List', () => {
 
   describe('with projects', () => {
     beforeEach(() => {
-      list = shallow(<List projects={projects} />);
+      list = shallow(<ProjectsList projects={projects} />);
     });
 
     it('renders with projects', () => {
