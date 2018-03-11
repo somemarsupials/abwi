@@ -1,14 +1,17 @@
 import React from 'react';
 import { SectionBar } from '../common';
-import { ProjectsList } from '../allProjects';
+import { ItemList } from '../items';
+import { Link } from 'react-router-dom';
 
 export default function(props) {
+  let { id, name } = props.project.client;
+
   return (
     <div>
       <SectionBar text={'Client'} />
-      <span>{props.project.client.name}</span>
+      <Link to={`/clients/${id}`}>{name}</Link>
       <SectionBar text={'Items'} />
-      <ProjectsList items={props.project.items}/>
+      <ItemList items={props.project.items}/>
     </div>
   );
 };
