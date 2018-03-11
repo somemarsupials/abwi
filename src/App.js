@@ -5,7 +5,8 @@ import { Header } from './components/header';
 import { 
   ProjectsContainer, 
   ProjectContainer, 
-  ClientsContainer 
+  ClientsContainer,
+  ClientContainer 
 } from './containers';
 
 import './App.css';
@@ -26,6 +27,7 @@ class App extends Component {
           <Header />
           <div className="App">
             <Route exact path="/clients" component={ClientsContainer} />
+            <Route exact path="/clients/:id" component={ClientContainer} />
             <Route exact path="/projects" component={ProjectsContainer} />
             <Route exact path="/projects/:id" component={ProjectContainer} />
           </div>
