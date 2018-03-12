@@ -5,9 +5,12 @@ exports[`ProjectDetail with project renders with items 1`] = `
   <Component
     text="Client"
   />
-  <span>
+  <Link
+    replace={false}
+    to="/clients/undefined"
+  >
     hello
-  </span>
+  </Link>
   <Component
     text="Items"
   />
@@ -19,5 +22,16 @@ exports[`ProjectDetail with project renders with items 1`] = `
       ]
     }
   />
+  <Button
+    active={false}
+    block={false}
+    bsClass="btn"
+    bsStyle="default"
+    disabled={false}
+    onClick={[Function]}
+  >
+    Add
+  </Button>
+  <Component />
 </div>
 `;

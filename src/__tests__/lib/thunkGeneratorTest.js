@@ -69,7 +69,7 @@ describe('thunkGenerator', () => {
     });
   });
 
-  describe('when bad status code', () => {
+  describe('when getting json', () => {
     beforeEach(async () => {
       response = { json: jest.fn().mockReturnValue('data'), ok: true };
       request = jest.fn().mockReturnValue(response);
@@ -79,6 +79,23 @@ describe('thunkGenerator', () => {
 
     it('calls success with data', () => {
       expect(success).toHaveBeenCalledWith('data');
+    });
+
+    it('dispatches success', () => {
+      expect(dispatch).toHaveBeenCalledWith('success');
+    });
+  });
+
+  describe('when not getting json', () => {
+    beforeEach(async () => {
+      response = { status: 200, ok: true };
+      request = jest.fn().mockReturnValue(response);
+      thunk = thunkGenerator(request, loading, success, fail);
+      await (thunk(1, 2, 3))(dispatch);
+    });
+
+    it('calls success with data', () => {
+      expect(success).toHaveBeenCalledWith(200);
     });
 
     it('dispatches success', () => {
