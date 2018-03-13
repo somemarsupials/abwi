@@ -1,40 +1,50 @@
 import { api } from '../App';
-import { thunkGenerator } from '../lib';
+import { ThunkGenerator } from '../lib';
 
-export const actions = {
-  FETCHING: 'PROJECTS_FETCHING',
-  FETCH_SUCCESS: 'PROJECTS_FETCH_SUCCESS',
-  FETCH_FAIL: 'PROJECTS_FETCH_FAIL',
+const CONTEXT = 'PROJECTS';
+const generator = new ThunkGenerator();
+
+// actions
+
+const actions = {
+  TOGGLE_CREATE_MODAL: `${CONTEXT}/TOGGLE_CREATE_MODAL`
 };
 
-async function request() {
+const SUPPORTED = ['FETCH', 'CREATE']
+
+SUPPORTED.forEach(function(method) {
+  Object.assign(actions, generator.actions(CONTEXT, method));
+});
+
+export { actions };
+
+// requests
+
+async function fetchRequest() {
   return await fetch(`${api}/projects`);
 };
 
-export function projectsLoading(bool) {
+async function createRequest(params) {
+  let config = { 
+    method: 'post', 
+    body: JSON.stringify(params) 
+  };
+  return await fetch(`${api}/projects`, config);
+};
+
+// action generators
+
+export function toggleCreateProjectModal(bool) {
   return {
-    type: actions.FETCHING,
-    isFetching: bool,
+    type: actions.TOGGLE_CREATE_MODAL,
+    active: bool,
   };
 };
 
-export function projectsFetched(data) {
-  return {
-    type: actions.FETCH_SUCCESS,
-    data: data,
-  };
-};
+// thunks
 
-export function projectsNotFetched(error) {
-  return {
-    type: actions.FETCH_FAIL,
-    error: error,
-  };
-};
+export const fetchProjects = 
+  generator.generate(fetchRequest, CONTEXT, 'FETCH');
 
-export const fetchProjects = thunkGenerator(
-  request,
-  projectsLoading,
-  projectsFetched,
-  projectsNotFetched
-);
+export const createProjects = 
+  generator.generate(createRequest, CONTEXT, 'CREATE');

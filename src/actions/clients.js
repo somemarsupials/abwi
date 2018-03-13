@@ -1,40 +1,28 @@
 import { api } from '../App';
-import { thunkGenerator } from '../lib';
+import { ThunkGenerator } from '../lib';
 
-export const actions = {
-  FETCHING: 'CLIENT_FETCHING',
-  FETCH_SUCCESS: 'CLIENT_FETCH_SUCCESS',
-  FETCH_FAIL: 'CLIENT_FETCH_FAIL',
-};
+const CONTEXT = 'PROJECT';
+const generator = new ThunkGenerator();
 
-async function request(id) {
+// actions
+
+const actions = {};
+
+const SUPPORTED = ['FETCH'];
+
+SUPPORTED.forEach(function(method) {
+  Object.assign(actions, generator.actions(CONTEXT, method));
+});
+
+export { actions };
+
+// requests
+
+async function fetchRequest(id) {
   return await fetch(`${api}/clients/${id}?detail=true`);
 };
 
-export function clientLoading(bool) {
-  return {
-    type: actions.FETCHING,
-    isFetching: bool,
-  };
-};
+// thunks
 
-export function clientFetched(data) {
-  return {
-    type: actions.FETCH_SUCCESS,
-    data: data,
-  };
-};
-
-export function clientNotFetched(error) {
-  return {
-    type: actions.FETCH_FAIL,
-    error: error,
-  };
-};
-
-export const fetchClient = thunkGenerator(
-  request,
-  clientLoading,
-  clientFetched,
-  clientNotFetched
-);
+export const fetchClient = 
+  generator.generate(fetchRequest, CONTEXT, 'FETCH');

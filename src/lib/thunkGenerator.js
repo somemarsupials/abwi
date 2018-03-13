@@ -1,3 +1,5 @@
+// supporting methods
+
 function actionString(context, method, status) {
   return `${context}/${method}_${status}`;
 };
@@ -29,15 +31,11 @@ function getFailAction(context, method) {
   };
 };
 
-function getActionGenerators(context, method) {
-  return {
-    loading: getLoadingAction(context, method),
-    success: getSuccessAction(context, method),
-    fail: getFailAction(context, method),
-  };
-};
+
+// thunk generator
 
 const TYPES = ['LOADING', 'SUCCESS', 'FAIL'];
+
 
 export default class ThunkGenerator {
   constructor(statuses = TYPES) {
@@ -74,7 +72,7 @@ export default class ThunkGenerator {
 
         try {
           response = await request(...args);
-          data = response.json ? response.json() : response.status;
+          data = response.json ? (await response.json()) : response.status;
         } 
         catch (e) {
           error = e.message;
@@ -88,7 +86,7 @@ export default class ThunkGenerator {
         // we've succeeded.
 
         error = error || (!response.ok && response.status);
-        dispatch(error ? actions.fail(error) : actions.success(data));
+        return dispatch(error ? actions.fail(error) : actions.success(data));
       };
     };
   };

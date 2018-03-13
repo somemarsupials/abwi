@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchProjects } from '../actions';
+import { fetchProjects, toggleCreateProjectModal } 
+  from '../actions/allProjects';
+
 import { ProjectsPage } from '../components/allProjects';
 
 
@@ -12,11 +14,7 @@ export class ProjectsContainer extends Component {
 
   render() {
     return (
-      <ProjectsPage
-        projects={this.props.projects} 
-        error={this.props.error}
-        fetching={this.props.fetching}
-      />
+      <ProjectsPage {...this.props} />
     );
   };
 };
@@ -26,12 +24,14 @@ function mapStateToProps(state) {
     projects: state.projects.data,
     error: state.projects.error,
     fetching: state.projects.fetching,
+    createModal: state.projects.createModal,
   };
 };
 
 function mapDispatchToState(dispatch) {
   return {
     fetchProjects: () => dispatch(fetchProjects()),
+    toggleCreateModal: () => dispatch(toggleCreateProjectModal(true))
   };
 };
 

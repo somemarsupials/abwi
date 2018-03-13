@@ -13,7 +13,7 @@ function fetching(state = false, action) {
 function fetchSuccess(state = null, action) {
   switch (action.type) {
     case actions.FETCH_SUCCESS:
-      return action.data;
+      return action.result;
     default:
       return state;
   }

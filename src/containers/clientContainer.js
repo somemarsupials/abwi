@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchClient } from '../actions';
+import { fetchClient } from '../actions/clients';
 import { ClientPage } from '../components/clients';
 
 
