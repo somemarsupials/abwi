@@ -34,10 +34,9 @@ async function createRequest(params) {
 
 // action generators
 
-export function toggleCreateProjectModal(bool) {
+export function toggleCreateProjectModal() {
   return {
     type: actions.TOGGLE_CREATE_MODAL,
-    active: bool,
   };
 };
 

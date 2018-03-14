@@ -1,7 +1,9 @@
 import React from 'react';
 
 import { TitleBar, ErrorBar, InfoBar } from '../common/';
+import { Button } from 'react-bootstrap';
 import ProjectsList from './projectsList';
+import ProjectModal from './projectModal';
 
 export default function(props) {
   return (
@@ -16,6 +18,10 @@ export default function(props) {
       { props.projects &&
         <ProjectsList projects={props.projects} />
       }
+      <div>
+        <Button onClick={props.toggleCreateModal}>Add</Button>
+        <ProjectModal show={props.createModal} onHide={props.toggleCreateModal} />
+      </div>
     </div>
   );
 };

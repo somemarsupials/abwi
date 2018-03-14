@@ -41,7 +41,7 @@ exports[`ProjectsList with projects renders with projects 1`] = `
 `;
 
 exports[`ProjectsList without projects renders with message 1`] = `
-<span>
+<p>
   No projects found
-</span>
+</p>
 `;

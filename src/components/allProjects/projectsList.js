@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function(props) {
   if (!props.projects || props.projects.length === 0) {
-    return (<span>No projects found</span>);
+    return (<p>No projects found</p>);
   };
 
   return(

@@ -31,7 +31,7 @@ function fetchFail(state = null, action) {
 function createModal(state = false, action) {
   switch (action.type) {
     case actions.TOGGLE_CREATE_MODAL:
-      return action.active;
+      return !state;
     default:
       return state;
   }

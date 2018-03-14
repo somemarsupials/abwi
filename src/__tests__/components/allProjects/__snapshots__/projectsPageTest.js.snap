@@ -8,6 +8,18 @@ exports[`ProjectsPage when finished loading correctly renders 1`] = `
   <Component
     projects="list-of-projects"
   />
+  <div>
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsStyle="default"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Add
+    </Button>
+  </div>
 </div>
 `;
 
@@ -19,6 +31,18 @@ exports[`ProjectsPage when loading renders with loading information 1`] = `
   <Component
     text="Fetching projects..."
   />
+  <div>
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsStyle="default"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Add
+    </Button>
+  </div>
 </div>
 `;
 
@@ -31,5 +55,17 @@ exports[`ProjectsPage with error renders with error bar 1`] = `
     detail="an error"
     text="Could not load projects"
   />
+  <div>
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsStyle="default"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Add
+    </Button>
+  </div>
 </div>
 `;
