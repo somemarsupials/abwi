@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectsPage when finished loading correctly renders 1`] = `
+<div>
+  <PageHeader
+    bsClass="page-header"
+  >
+    Projects
+  </PageHeader>
+  <div>
+    <Link
+      replace={false}
+      to="/clients/undefined"
+    />
+    <Component
+      projects="list-of-projects"
+    />
+  </div>
+  <div>
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsStyle="default"
+      disabled={false}
+    >
+      Add
+    </Button>
+    <Component />
+  </div>
+</div>
+`;
+
+exports[`ProjectsPage when loading renders with loading information 1`] = `
+<div>
+  <PageHeader
+    bsClass="page-header"
+  >
+    Projects
+  </PageHeader>
+  <Alert
+    bsClass="info"
+    bsStyle="info"
+    closeLabel="Close alert"
+  >
+    Fetching projects...
+  </Alert>
+  <div>
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsStyle="default"
+      disabled={false}
+    >
+      Add
+    </Button>
+    <Component />
+  </div>
+</div>
+`;
+
+exports[`ProjectsPage with error renders with error bar 1`] = `
+<div>
+  <PageHeader
+    bsClass="page-header"
+  >
+    Projects
+  </PageHeader>
+  <Alert
+    bsClass="error"
+    bsStyle="info"
+    closeLabel="Close alert"
+  >
+    Could not load projects | 
+    an error
+  </Alert>
+  <div>
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsStyle="default"
+      disabled={false}
+    >
+      Add
+    </Button>
+    <Component />
+  </div>
+</div>
+`;

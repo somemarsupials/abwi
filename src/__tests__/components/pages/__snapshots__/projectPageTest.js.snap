@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectPage when given projects correctly renders 1`] = `
+<div>
+  <PageHeader
+    bsClass="page-header"
+  >
+    Unnamed project
+  </PageHeader>
+  <div>
+    <Component>
+      Client
+    </Component>
+    <Link
+      replace={false}
+      to="/clients/undefined"
+    />
+    <Component>
+      Items
+    </Component>
+    <Component />
+  </div>
+</div>
+`;
+
+exports[`ProjectPage when loading renders with loading information 1`] = `
+<div>
+  <PageHeader
+    bsClass="page-header"
+  >
+    Unnamed project
+  </PageHeader>
+  <Alert
+    bsClass="info"
+    bsStyle="info"
+    closeLabel="Close alert"
+  >
+    Fetching projects...
+  </Alert>
+</div>
+`;
+
+exports[`ProjectPage with error renders with error bar 1`] = `
+<div>
+  <PageHeader
+    bsClass="page-header"
+  >
+    Unnamed project
+  </PageHeader>
+  <Alert
+    bsClass="info"
+    bsStyle="info"
+    closeLabel="Close alert"
+  >
+    Could not load project | 
+    an error
+  </Alert>
+</div>
+`;
