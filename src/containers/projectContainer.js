@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchProject } from '../actions/projects';
-import { ProjectPage } from '../components/projects';
+import { ProjectPage } from '../components/pages';
 
 
 export class ProjectContainer extends Component {

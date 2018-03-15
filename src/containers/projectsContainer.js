@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchProjects, toggleCreateProjectModal } 
   from '../actions/allProjects';
 
-import { ProjectsPage } from '../components/allProjects';
+import { ProjectsPage } from '../components/pages';
 
 
 export class ProjectsContainer extends Component {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchClients } from '../actions/allClients';
-import { ClientsPage } from '../components/allClients';
+import { ClientsPage } from '../components/pages';
 
 
 export class ClientsContainer extends Component {
