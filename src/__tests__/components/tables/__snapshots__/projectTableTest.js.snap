@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectTable with projects renders with projects 1`] = `
+<table
+  className="table"
+>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      key="0"
+    >
+      <td>
+        <Link
+          replace={false}
+          to="/projects/1"
+        >
+          project 1
+        </Link>
+      </td>
+    </tr>
+    <tr
+      key="1"
+    >
+      <td>
+        <Link
+          replace={false}
+          to="/projects/2"
+        >
+          project 2
+        </Link>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`ProjectTable without projects renders with message 1`] = `
+<Alert
+  bsClass="alert"
+  bsStyle="info"
+  closeLabel="Close alert"
+>
+  No projects found
+</Alert>
+`;

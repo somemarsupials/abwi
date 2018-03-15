@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClientTable with clients renders with clients 1`] = `
+<table
+  className="table"
+>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      key="0"
+    >
+      <td>
+        <Link
+          replace={false}
+          to="/clients/undefined"
+        >
+          a
+        </Link>
+      </td>
+    </tr>
+    <tr
+      key="1"
+    >
+      <td>
+        <Link
+          replace={false}
+          to="/clients/undefined"
+        >
+          b
+        </Link>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`ClientTable without clients renders with message 1`] = `
+<Alert
+  bsClass="alert"
+  bsStyle="info"
+  closeLabel="Close alert"
+>
+  No clients found
+</Alert>
+`;

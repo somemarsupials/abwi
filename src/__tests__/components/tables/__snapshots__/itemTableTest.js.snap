@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ItemTable with items renders with items 1`] = `
+<table
+  className="table"
+>
+  <thead>
+    <tr>
+      <th>
+        Description
+      </th>
+      <th>
+        Value
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      key="0"
+    >
+      <td>
+        1
+      </td>
+      <td>
+        £2.00
+      </td>
+    </tr>
+    <tr
+      key="1"
+    >
+      <td>
+        2
+      </td>
+      <td>
+        £1.00
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`ItemTable without items renders with message 1`] = `
+<Alert
+  bsClass="alert"
+  bsStyle="info"
+  closeLabel="Close alert"
+>
+  No items found
+</Alert>
+`;
