@@ -26,7 +26,7 @@ export class FetchHelper {
     return ids.length === this._path.length;
   };
 
-  buildRoute(ids) {
+  buildRoute(ids, query) {
     let components = [this._api];
 
     this._path.forEach(function(path, index) {
@@ -36,11 +36,23 @@ export class FetchHelper {
       };
     });
 
-    return components.join('/');
+    return components.join('/') + this._buildQuery(query);
   };
 
-  fetch(ids, params = {}) {
-    return this._fetcher(this.buildRoute(ids), params);
+  fetch(ids, query = {}, params = {}) {
+    return this._fetcher(this.buildRoute(ids, query), params);
+  };
+
+  _buildQuery(query) {
+    if (!query || query === {}) {
+      return ''
+    };
+
+    let parameters = Object.keys(query).map(function(key) {
+      return `${key}=${query[key]}`;
+    });
+
+    return '?' + parameters.join('&');
   };
 };
 

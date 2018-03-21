@@ -1,6 +1,6 @@
 import { Resource } from '../../../lib/client/resource';
 
-describe('RestResource', () => {
+describe('Resource', () => {
   let resource, helper, rvalue;
 
   beforeEach(() => {
@@ -54,7 +54,7 @@ describe('RestResource', () => {
     describe('when correct IDs', () => {
       beforeEach(() => {
         helper.hasIds = jest.fn().mockReturnValue(true);
-        rvalue = resource.index(1, 2, 3);
+        rvalue = resource.index([1, 2, 3], 'query', {});
       });
 
       it('returns promise', () => {
@@ -62,7 +62,7 @@ describe('RestResource', () => {
       });
 
       it('calls fetch with IDs', () => {
-        expect(helper.fetch).toHaveBeenCalledWith([1, 2, 3]);
+        expect(helper.fetch).toHaveBeenCalledWith([1, 2, 3], 'query', {});
       });
     });
 
@@ -81,7 +81,7 @@ describe('RestResource', () => {
     describe('when correct IDs', () => {
       beforeEach(() => {
         helper.hasTrailingIds = jest.fn().mockReturnValue(true);
-        rvalue = resource.show(1, 2, 3);
+        rvalue = resource.show([1, 2, 3], 'query', {});
       });
 
       it('returns promise', () => {
@@ -89,7 +89,7 @@ describe('RestResource', () => {
       });
 
       it('calls fetch with IDs', () => {
-        expect(helper.fetch).toHaveBeenCalledWith([1, 2, 3]);
+        expect(helper.fetch).toHaveBeenCalledWith([1, 2, 3], 'query', {});
       });
     });
 
@@ -108,7 +108,7 @@ describe('RestResource', () => {
     describe('when correct IDs', () => {
       beforeEach(() => {
         helper.hasIds = jest.fn().mockReturnValue(true);
-        rvalue = resource.create({}, 1, 2, 3);
+        rvalue = resource.create([1, 2, 3], 'query', { body: {} });
       });
 
       it('returns promise', () => {
@@ -116,8 +116,11 @@ describe('RestResource', () => {
       });
 
       it('calls fetch with IDs', () => {
-        expect(helper.fetch)
-          .toHaveBeenCalledWith([1, 2, 3], { method: 'post', body: '{}' });
+        expect(helper.fetch).toHaveBeenCalledWith(
+          [1, 2, 3], 
+          'query', 
+          { method: 'post', body: '{}' }
+        );
       });
     });
 
@@ -136,7 +139,7 @@ describe('RestResource', () => {
     describe('when correct IDs', () => {
       beforeEach(() => {
         helper.hasTrailingIds = jest.fn().mockReturnValue(true);
-        rvalue = resource.update({}, 1, 2, 3);
+        rvalue = resource.update([1, 2, 3], 'query', { body: {} });
       });
 
       it('returns promise', () => {
@@ -144,8 +147,11 @@ describe('RestResource', () => {
       });
 
       it('calls fetch with IDs', () => {
-        expect(helper.fetch)
-          .toHaveBeenCalledWith([1, 2, 3], { method: 'patch', body: '{}' });
+        expect(helper.fetch).toHaveBeenCalledWith(
+          [1, 2, 3], 
+          'query', 
+          { method: 'patch', body: '{}' }
+        );
       });
     });
 
@@ -164,7 +170,7 @@ describe('RestResource', () => {
     describe('when correct IDs', () => {
       beforeEach(() => {
         helper.hasTrailingIds = jest.fn().mockReturnValue(true);
-        rvalue = resource.delete(1, 2, 3);
+        rvalue = resource.delete([1, 2, 3], 'query', {});
       });
 
       it('returns promise', () => {
@@ -173,7 +179,7 @@ describe('RestResource', () => {
 
       it('calls fetch with IDs', () => {
         expect(helper.fetch)
-          .toHaveBeenCalledWith([1, 2, 3], { method: 'delete' });
+          .toHaveBeenCalledWith([1, 2, 3], 'query', { method: 'delete' });
       });
     });
 

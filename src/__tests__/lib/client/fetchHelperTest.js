@@ -60,6 +60,16 @@ describe('FetchHelper', () => {
     it('builds route with trailing id', () => {
       expect(helper.buildRoute([1, 2])).toEqual('api/a/1/b/2');
     });
+
+    it('builds route with single parameter query string', () => {
+      expect(helper.buildRoute([1], { a: 1 }))
+        .toEqual('api/a/1/b?a=1');
+    });
+
+    it('builds route with multiple parameter query string', () => {
+      expect(helper.buildRoute([1], { a: 1, b: 2 }))
+        .toEqual('api/a/1/b?a=1&b=2');
+    });
   });
 
   describe('#fetch', () => {
@@ -67,11 +77,11 @@ describe('FetchHelper', () => {
 
     beforeEach(() => {
       helper.buildRoute = jest.fn().mockReturnValue('route');
-      rvalue = helper.fetch([1, 2], 'params');
+      rvalue = helper.fetch([1, 2], 'query', 'params');
     });
 
     it('builds route', () => {
-      expect(helper.buildRoute).toHaveBeenCalledWith([1, 2]);
+      expect(helper.buildRoute).toHaveBeenCalledWith([1, 2], 'query');
     });
 
     it('fetches resource', () => {
