@@ -1,3 +1,8 @@
+// In the development environment, i.e. Node.js, the fetch API is
+// not defined. Import a polyfill to make up for it.
+
+let fetch = fetch || require('node-fetch').fetch;
+
 export class FetchHelper {
   constructor(path, api, fetcher = fetch) {
     this._path = path;
