@@ -1,17 +1,20 @@
 import { buildResource } from './resource';
 
-// top-level resources
+export default function buildApiClient(api, builder = buildResource) {
 
-const projects = buildResource('projects');
-const clients = buildResource('clients');
+  // projects
 
-// nested resources
+  const projects = builder('projects', api);
+  projects.nest(builder('items', api), 'items');
 
-projects.nest(buildResource('items'));
+  // clients
 
-// client object
+  const clients = builder('clients', api);
 
-export default {
-  projects: projects,
-  clients: clients,
+  // API client
+
+  return {
+    projects: projects,
+    clients: clients,
+  };
 };
