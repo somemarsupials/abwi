@@ -15,12 +15,12 @@ export default function(props) {
         {(project && project.title) || 'Unnamed project'}
       </PageHeader>
       { props.fetching && 
-        <Alert bsClass='info'>
+        <Alert bsStyle='info'>
           Fetching projects...
         </Alert>
       }
       { props.error &&
-        <Alert bsClass='info'>
+        <Alert bsStyle='info'>
           Could not load project | {props.error}
         </Alert>
       }

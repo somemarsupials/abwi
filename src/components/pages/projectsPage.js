@@ -1,16 +1,12 @@
 import React from 'react';
 
-import { Alert, Button, PageHeader } from 'react-bootstrap';
+import { Alert, PageHeader } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { ProjectTable } from '../tables';
-import { ProjectModal } from '../modals';
+import { ProjectModalContainer } from '../../containers';
 
 export default function(props) {
-  let clientId, clientName;
-
-  if (props.project && props.project.client) {
-    let { id: clientId, name: clientName } = props.project.client;
-  } 
+  let client = (props.project && props.project.client) || {};
 
   return (
     <div>
@@ -18,24 +14,23 @@ export default function(props) {
         Projects
       </PageHeader>
       { props.fetching &&
-        <Alert bsClass='info'>
+        <Alert bsStyle='info'>
           Fetching projects...
         </Alert>
       }
       { props.error &&
-        <Alert bsClass='error'>
+        <Alert bsStyle='danger'>
           Could not load projects | {props.error}
         </Alert>
       }
       { props.projects &&
         <div>
-          <Link to={`/clients/${clientId}`}>{clientName}</Link>
+          <Link to={`/clients/${client.id}`}>{client.name}</Link>
           <ProjectTable projects={props.projects}/>
         </div>
       }
       <div>
-        <Button onClick={props.toggleCreateModal}>Add</Button>
-        <ProjectModal show={props.createModal} onHide={props.toggleCreateModal} />
+        <ProjectModalContainer />
       </div>
     </div>
   );

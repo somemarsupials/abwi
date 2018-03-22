@@ -12,12 +12,12 @@ export default function(props) {
         {title}
       </PageHeader>
       { props.fetching && 
-        <Alert bsClass='info'>
+        <Alert bsStyle='info'>
           Fetching client...
         </Alert>
       }
       { props.error &&
-        <Alert bsClass='alert'>
+        <Alert bsStyle='danger'>
           Could not load client | {props.error}
         </Alert>
       }
