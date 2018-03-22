@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
-import allProjectsReducer from './allProjects';
 import projectsReducer from './projects';
-import allClientsReducer from './allClients';
+import projectReducer from './project';
 import clientsReducer from './clients';
+import clientReducer from './client';
+import projectModalReducer from './projectModal';
 
 export default combineReducers({
-  clients: allClientsReducer,
-  client: clientsReducer,
-  projects: allProjectsReducer,
-  project: projectsReducer,
+  clients: clientsReducer,
+  client: clientReducer,
+  projects: projectsReducer,
+  project: projectReducer,
+  projectModal: projectModalReducer,
 });

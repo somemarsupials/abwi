@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
-import { actions } from '../actions/allProjects';
+import { actions } from '../actions/project';
 
 function fetching(state = false, action) {
   switch (action.type) {
-    case actions.FETCH_LOADING:
-      return action.isLoading;
+    case actions.FETCHING:
+      return action.isFetching;
     default:
       return state;
   }
 };
 
-function fetchSuccess(state = [], action) {
+function fetchSuccess(state = null, action) {
   switch (action.type) {
     case actions.FETCH_SUCCESS:
       return action.result;
@@ -28,18 +28,8 @@ function fetchFail(state = null, action) {
   }
 };
 
-function createModal(state = false, action) {
-  switch (action.type) {
-    case actions.TOGGLE_CREATE_MODAL:
-      return !state;
-    default:
-      return state;
-  }
-};
-
 export default combineReducers({
   fetching: fetching,
   data: fetchSuccess,
   error: fetchFail,
-  createModal: createModal,
 });

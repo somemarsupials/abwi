@@ -3,14 +3,14 @@ import { actions } from '../actions/projects';
 
 function fetching(state = false, action) {
   switch (action.type) {
-    case actions.FETCHING:
-      return action.isFetching;
+    case actions.FETCH_LOADING:
+      return action.isLoading;
     default:
       return state;
   }
 };
 
-function fetchSuccess(state = null, action) {
+function fetchSuccess(state = [], action) {
   switch (action.type) {
     case actions.FETCH_SUCCESS:
       return action.result;
@@ -28,8 +28,18 @@ function fetchFail(state = null, action) {
   }
 };
 
+function createModal(state = false, action) {
+  switch (action.type) {
+    case actions.TOGGLE_CREATE_MODAL:
+      return !state;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   fetching: fetching,
   data: fetchSuccess,
   error: fetchFail,
+  createModal: createModal,
 });

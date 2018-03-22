@@ -10,7 +10,7 @@ function fetching(state = false, action) {
   }
 };
 
-function fetchSuccess(state = null, action) {
+function fetchSuccess(state = [], action) {
   switch (action.type) {
     case actions.FETCH_SUCCESS:
       return action.result;
