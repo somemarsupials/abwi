@@ -77,7 +77,7 @@ describe('FetchHelper', () => {
 
     beforeEach(() => {
       helper.buildRoute = jest.fn().mockReturnValue('route');
-      rvalue = helper.fetch([1, 2], 'query', 'params');
+      rvalue = helper.fetch([1, 2], 'query', { a: 1 });
     });
 
     it('builds route', () => {
@@ -85,7 +85,7 @@ describe('FetchHelper', () => {
     });
 
     it('fetches resource', () => {
-      expect(fetcher).toHaveBeenCalledWith('route', 'params');
+      expect(fetcher).toHaveBeenCalledWith({ url: 'route', a: 1 });
     });
 
     it('returns promise', () => {

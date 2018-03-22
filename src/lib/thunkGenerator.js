@@ -1,4 +1,3 @@
-// supporting methods
 
 function actionString(context, method, status) {
   return `${context}/${method}_${status}`;
@@ -72,7 +71,7 @@ export default class ThunkGenerator {
 
         try {
           response = await request(...args);
-          data = response.json ? (await response.json()) : response.status;
+          data = response.data ? response.data : response.status;
         } 
         catch (e) {
           error = e.message;

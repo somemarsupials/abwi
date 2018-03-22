@@ -147,7 +147,7 @@ describe('ThunkGenerator', () => {
 
     describe('when getting json', () => {
       beforeEach(async () => {
-        response = { json: jest.fn().mockReturnValue('data'), ok: true };
+        response = { data: 'data', ok: true };
         request = jest.fn().mockReturnValue(response);
         thunk = generator.generate(request);
         await (thunk(1, 2, 3))(dispatch);

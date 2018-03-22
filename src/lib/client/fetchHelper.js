@@ -1,10 +1,7 @@
-// In the development environment, i.e. Node.js, the fetch API is
-// not defined. Import a polyfill to make up for it.
-
-let fetch = fetch || require('node-fetch').fetch;
+import axios from 'axios';
 
 export class FetchHelper {
-  constructor(path, api, fetcher = fetch) {
+  constructor(path, api, fetcher = axios) {
     this._path = path;
     this._api = api;
     this._fetcher = fetcher;
@@ -18,12 +15,12 @@ export class FetchHelper {
     return this._path;
   };
 
-  hasIds(ids) {
+  hasIds(ids = []) {
     return ids.length === this._path.length - 1;
   };
 
-  hasTrailingIds(ids) {
-    return ids.length === this._path.length;
+  hasTrailingIds(ids = []) {
+    return ids && ids.length === this._path.length;
   };
 
   buildRoute(ids, query) {
@@ -39,12 +36,18 @@ export class FetchHelper {
     return components.join('/') + this._buildQuery(query);
   };
 
-  fetch(ids, query = {}, params = {}) {
-    return this._fetcher(this.buildRoute(ids, query), params);
+  fetch(ids = [], query = {}, params = {}) {
+    let url = this.buildRoute(ids, query);
+
+    Object.assign(params, {
+      url: url
+    });
+
+    return this._fetcher(params);
   };
 
   _buildQuery(query) {
-    if (!query || query === {}) {
+    if (!query || Object.keys(query).length === 0) {
       return ''
     };
 
