@@ -60,8 +60,15 @@ export default class ThunkGenerator {
     };
   };
 
+  _isError(response) {
+    if (response.ok === false || response.statusText !== 'OK') {
+      return response.status;
+    };
+  };
+
   generate(request, context, method) {
     let actions = this.actionGenerators(context, method);
+    let isError = this._isError;
 
     return function thunk(...args) {
       return async function(dispatch) {
@@ -84,7 +91,7 @@ export default class ThunkGenerator {
         // error. If neither, the error is undefined because
         // we've succeeded.
 
-        error = error || (!response.ok && response.status);
+        error = error || isError(response);
         return dispatch(error ? actions.fail(error) : actions.success(data));
       };
     };
