@@ -20,7 +20,7 @@ export { actions };
 // requests
 
 async function fetchRequest(id) {
-  return await fetch(`${api}/projects/${id}?detail=true`);
+  return await apiClient.projects.show([id], { detail: true });
 };
 
 // thunks
