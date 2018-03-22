@@ -7,7 +7,7 @@ function show(state = false, action) {
       return !state;
     default:
       return state;
-  };
+  }
 };
 
 function description(state = null, action) {
@@ -16,7 +16,7 @@ function description(state = null, action) {
       return action.value;
     default:
       return state;
-  };
+  }
 };
 
 function client(state = null, action) {
@@ -25,7 +25,7 @@ function client(state = null, action) {
       return action.value;
     default:
       return state;
-  };
+  }
 };
 
 export default combineReducers({
