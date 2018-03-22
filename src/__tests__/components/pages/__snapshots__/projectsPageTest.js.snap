@@ -17,16 +17,7 @@ exports[`ProjectsPage when finished loading correctly renders 1`] = `
     />
   </div>
   <div>
-    <Button
-      active={false}
-      block={false}
-      bsClass="btn"
-      bsStyle="default"
-      disabled={false}
-    >
-      Add
-    </Button>
-    <Component />
+    <Connect(ProjectFormContainer) />
   </div>
 </div>
 `;
@@ -46,16 +37,7 @@ exports[`ProjectsPage when loading renders with loading information 1`] = `
     Fetching projects...
   </Alert>
   <div>
-    <Button
-      active={false}
-      block={false}
-      bsClass="btn"
-      bsStyle="default"
-      disabled={false}
-    >
-      Add
-    </Button>
-    <Component />
+    <Connect(ProjectFormContainer) />
   </div>
 </div>
 `;
@@ -76,16 +58,7 @@ exports[`ProjectsPage with error renders with error bar 1`] = `
     an error
   </Alert>
   <div>
-    <Button
-      active={false}
-      block={false}
-      bsClass="btn"
-      bsStyle="default"
-      disabled={false}
-    >
-      Add
-    </Button>
-    <Component />
+    <Connect(ProjectFormContainer) />
   </div>
 </div>
 `;

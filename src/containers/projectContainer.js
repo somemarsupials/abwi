@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchProject } from '../actions/projects';
+import { fetchProject } from '../actions/project';
 import { ProjectPage } from '../components/pages';
 
 

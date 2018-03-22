@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchProjects, toggleCreateProjectModal } 
-  from '../actions/allProjects';
-
+import { fetchProjects } from '../actions/projects';
 import { ProjectsPage } from '../components/pages';
 
 
@@ -24,14 +22,12 @@ function mapStateToProps(state) {
     projects: state.projects.data,
     error: state.projects.error,
     fetching: state.projects.fetching,
-    createModal: state.projects.createModal,
   };
 };
 
 function mapDispatchToState(dispatch) {
   return {
     fetchProjects: () => dispatch(fetchProjects()),
-    toggleCreateModal: () => dispatch(toggleCreateProjectModal(true))
   };
 };
 
