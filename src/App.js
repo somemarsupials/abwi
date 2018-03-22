@@ -11,14 +11,6 @@ import {
 
 import './App.css';
 
-let api;
-
-if (window.location.hostname === 'localhost') {
-  api = 'http://localhost:5000';
-} else {
-  api = 'https://http://abwi.herokuapp.com';
-};
-
 class App extends Component {
   render() {
     return (
@@ -38,4 +30,3 @@ class App extends Component {
 };
 
 export default App;
-export { api };
