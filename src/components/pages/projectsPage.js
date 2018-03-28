@@ -6,8 +6,6 @@ import { ProjectTable } from '../tables';
 import { ProjectModalContainer } from '../../containers';
 
 export default function(props) {
-  let client = (props.project && props.project.client) || {};
-
   return (
     <div>
       <PageHeader>
@@ -24,10 +22,7 @@ export default function(props) {
         </Alert>
       }
       { props.projects &&
-        <div>
-          <Link to={`/clients/${client.id}`}>{client.name}</Link>
-          <ProjectTable projects={props.projects}/>
-        </div>
+        <ProjectTable projects={props.projects}/>
       }
       <div>
         <ProjectModalContainer />
