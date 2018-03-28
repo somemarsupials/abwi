@@ -23,8 +23,13 @@ export class FetchHelper {
     return ids && ids.length === this._path.length;
   };
 
-  buildRoute(ids, query) {
+  _isOk(response) {
+    return response.ok === true || response.statusText === 'OK';
+  };
+
+  buildRoute(params) {
     let components = [this._api];
+    let ids = params.ids || [];
 
     this._path.forEach(function(path, index) {
       components.push(path);
@@ -33,29 +38,30 @@ export class FetchHelper {
       };
     });
 
-    return components.join('/') + this._buildQuery(query);
+    return components.join('/');
   };
 
-  fetch(ids = [], query = {}, params = {}) {
-    let url = this.buildRoute(ids, query);
+  async fetch(params) {
+    let url = this.buildRoute(params);
 
     Object.assign(params, {
       url: url
     });
 
-    return this._fetcher(params);
-  };
+    let response, error;
 
-  _buildQuery(query) {
-    if (!query || Object.keys(query).length === 0) {
-      return ''
+    try {
+      response = await this._fetcher(params);
+    }
+    catch (e) {
+      error = e;
+      response = {};
     };
 
-    let parameters = Object.keys(query).map(function(key) {
-      return `${key}=${query[key]}`;
-    });
-
-    return '?' + parameters.join('&');
+    return {
+      error: error || (!this._isOk(response) && response.status),
+      data: response.data || response.status,
+    };
   };
 };
 

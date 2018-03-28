@@ -22,56 +22,56 @@ export class Resource {
 
   // requests
 
-  index(ids, query, params) {
-    if (!this._helper.hasIds(ids)) {
-      this.idError();
+  index(params = {}) {
+    if (!this._helper.hasIds(params.ids)) {
+      this._idError();
     };
-    return this._helper.fetch(ids, query, params);
+    return this._helper.fetch(params);
   };
 
-  show(ids, query, params) {
-    if (!this._helper.hasTrailingIds(ids)) {
-      this.idError();
+  show(params = {}) {
+    if (!this._helper.hasTrailingIds(params.ids)) {
+      this._idError();
     };
-    return this._helper.fetch(ids, query, params);
+    return this._helper.fetch(params);
   };
 
-  create(ids, query, params) {
-    if (!this._helper.hasIds(ids)) {
-      this.idError();
+  create(params = {}) {
+    if (!this._helper.hasIds(params.ids)) {
+      this._idError();
     };
 
     Object.assign(params, {
       method: 'post',
-      body: JSON.stringify(params.body),
+      data: params.data,
     });
 
-    return this._helper.fetch(ids, query, params);
+    return this._helper.fetch(params);
   };
 
-  update(ids, query, params) {
-    if (!this._helper.hasTrailingIds(ids)) {
-      this.idError();
+  update(params = {}) {
+    if (!this._helper.hasTrailingIds(params.ids)) {
+      this._idError();
     };
 
     Object.assign(params, {
       method: 'patch',
-      body: JSON.stringify(params.body),
+      data: params.data,
     });
 
-    return this._helper.fetch(ids, query, params);
+    return this._helper.fetch(params);
   };
 
-  delete(ids, query, params) {
-    if (!this._helper.hasTrailingIds(ids)) {
-      this.idError();
+  delete(params = {}) {
+    if (!this._helper.hasTrailingIds(params.ids)) {
+      this._idError();
     };
 
     Object.assign(params, {
       method: 'delete',
     });
 
-    return this._helper.fetch(ids, query, params);
+    return this._helper.fetch(params);
   };
 
   _idError() {
