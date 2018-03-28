@@ -3,7 +3,6 @@
 exports[`Project when rendering creates ProjectPage 1`] = `
 <Component
   error="error"
-  fetchProjects={[Function]}
   fetching={false}
   projects={Array []}
 />

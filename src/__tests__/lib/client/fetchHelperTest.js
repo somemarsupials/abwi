@@ -4,7 +4,7 @@ describe('FetchHelper', () => {
   let helper, fetcher;
 
   beforeEach(() => {
-    fetcher = jest.fn().mockReturnValue('promise');
+    fetcher = jest.fn();
     helper = new FetchHelper(['a', 'b'], 'api', fetcher);
   });
 
@@ -54,42 +54,77 @@ describe('FetchHelper', () => {
 
   describe('#buildRoute', () => {
     it('builds route without trailing id', () => {
-      expect(helper.buildRoute([1])).toEqual('api/a/1/b');
+      expect(helper.buildRoute({ ids: [1] })).toEqual('api/a/1/b');
     });
 
     it('builds route with trailing id', () => {
-      expect(helper.buildRoute([1, 2])).toEqual('api/a/1/b/2');
-    });
-
-    it('builds route with single parameter query string', () => {
-      expect(helper.buildRoute([1], { a: 1 }))
-        .toEqual('api/a/1/b?a=1');
-    });
-
-    it('builds route with multiple parameter query string', () => {
-      expect(helper.buildRoute([1], { a: 1, b: 2 }))
-        .toEqual('api/a/1/b?a=1&b=2');
+      expect(helper.buildRoute({ ids: [1, 2] })).toEqual('api/a/1/b/2');
     });
   });
 
   describe('#fetch', () => {
-    let rvalue;
+    let params, rvalue;
 
-    beforeEach(() => {
-      helper.buildRoute = jest.fn().mockReturnValue('route');
-      rvalue = helper.fetch([1, 2], 'query', { a: 1 });
+    describe('before request', () => {
+      beforeEach(() => {
+        helper.buildRoute = jest.fn().mockReturnValue('route');
+        params = { ids: [1, 2] };
+        rvalue = helper.fetch(params);
+      });
+
+      it('builds route', () => {
+        expect(helper.buildRoute).toHaveBeenCalledWith(params);
+      });
+
+      it('fetches resource', () => {
+        expect(fetcher).toHaveBeenCalledWith({ url: 'route', ids: [1, 2] });
+      });
     });
 
-    it('builds route', () => {
-      expect(helper.buildRoute).toHaveBeenCalledWith([1, 2], 'query');
+    describe('when request throws error', () => {
+      beforeEach(async () => {
+        fetcher.mockImplementation(() => { throw new Error('error') });
+        rvalue = await helper.fetch(params);
+      });
+
+      it('returns error', () => {
+        expect(rvalue.error).toEqual('error');
+      });
     });
 
-    it('fetches resource', () => {
-      expect(fetcher).toHaveBeenCalledWith({ url: 'route', a: 1 });
+    describe('when request has error status', () => {
+      beforeEach(async () => {
+        fetcher.mockImplementation(() => { 
+          throw { response: { data: 'error' } } 
+        });
+        rvalue = await helper.fetch(params);
+      });
+
+      it('returns error', () => {
+        expect(rvalue.error).toEqual('error');
+      });
     });
 
-    it('returns promise', () => {
-      expect(rvalue).toEqual('promise');
+    describe('when receiving data', () => {
+      beforeEach(async () => {
+        fetcher.mockReturnValue({ status: 200, data: 'data' });
+        rvalue = await helper.fetch(params);
+      });
+
+      it('returns data', () => {
+        expect(rvalue.data).toEqual('data');
+      });
+    });
+
+    describe('when receiving data', () => {
+      beforeEach(async () => {
+        fetcher.mockReturnValue({ status: 200 });
+        rvalue = await helper.fetch(params);
+      });
+
+      it('returns data', () => {
+        expect(rvalue.data).toEqual(200);
+      });
     });
   });
 });

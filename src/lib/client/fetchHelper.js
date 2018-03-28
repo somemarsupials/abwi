@@ -55,8 +55,9 @@ export class FetchHelper {
     }
     catch (e) {
       error = (e.response && e.response.data) || e.message;
-      response = {};
     };
+
+    response = response || {};
     
     return {
       error: error,

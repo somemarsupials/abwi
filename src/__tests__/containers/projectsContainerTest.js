@@ -7,14 +7,18 @@ describe('Project', () => {
   let props, projects;
 
   beforeEach(() => {
-    props = { fetchProjects: jest.fn() };
+    props = { 
+      fetchProjects: jest.fn(),
+      response: {
+        data: [], 
+        error: 'error', 
+      },
+      fetching: false,
+    };
+    projects = shallow(<ProjectsContainer {...props} />);
   });
 
   describe('when mounted', () => {
-    beforeEach(() => {
-      projects = shallow(<ProjectsContainer {...props} />);
-    });
-
     it('calls fetch function', () => {
       expect(props.fetchProjects).toHaveBeenCalled();
     });
@@ -22,15 +26,6 @@ describe('Project', () => {
 
 
   describe('when rendering', () => {
-    beforeEach(() => {
-      Object.assign(props, { 
-        projects: [], 
-        error: 'error', 
-        fetching: false,
-      });
-      projects = shallow(<ProjectsContainer {...props} />);
-    });
-
     it('creates ProjectPage', () => {
       expect(projects).toMatchSnapshot();
     });

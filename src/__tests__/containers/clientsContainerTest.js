@@ -7,14 +7,18 @@ describe('Client', () => {
   let props, clients;
 
   beforeEach(() => {
-    props = { fetchClients: jest.fn() };
+    props = { 
+      fetchClients: jest.fn(),
+      response: {
+        data: [], 
+        error: 'error', 
+      },
+      fetching: false,
+    };
+    clients = shallow(<ClientsContainer {...props} />);
   });
 
   describe('when mounted', () => {
-    beforeEach(() => {
-      clients = shallow(<ClientsContainer {...props} />);
-    });
-
     it('calls fetch function', () => {
       expect(props.fetchClients).toHaveBeenCalled();
     });
@@ -22,15 +26,6 @@ describe('Client', () => {
 
 
   describe('when rendering', () => {
-    beforeEach(() => {
-      Object.assign(props, { 
-        clients: [], 
-        error: 'error', 
-        fetching: false,
-      });
-      clients = shallow(<ClientsContainer {...props} />);
-    });
-
     it('creates ClientPage', () => {
       expect(clients).toMatchSnapshot();
     });

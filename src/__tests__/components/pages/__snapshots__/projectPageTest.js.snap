@@ -31,7 +31,7 @@ exports[`ProjectPage when loading renders with loading information 1`] = `
     Unnamed project
   </PageHeader>
   <Alert
-    bsClass="info"
+    bsClass="alert"
     bsStyle="info"
     closeLabel="Close alert"
   >
@@ -48,7 +48,7 @@ exports[`ProjectPage with error renders with error bar 1`] = `
     Unnamed project
   </PageHeader>
   <Alert
-    bsClass="info"
+    bsClass="alert"
     bsStyle="info"
     closeLabel="Close alert"
   >

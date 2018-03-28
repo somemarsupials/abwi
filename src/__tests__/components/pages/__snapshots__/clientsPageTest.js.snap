@@ -21,7 +21,7 @@ exports[`ClientsPage when loading renders with loading information 1`] = `
     Clients
   </PageHeader>
   <Alert
-    bsClass="info"
+    bsClass="alert"
     bsStyle="info"
     closeLabel="Close alert"
   >
@@ -38,8 +38,8 @@ exports[`ClientsPage with error renders with error bar 1`] = `
     Clients
   </PageHeader>
   <Alert
-    bsClass="error"
-    bsStyle="info"
+    bsClass="alert"
+    bsStyle="danger"
     closeLabel="Close alert"
   >
     Could not load clients | 

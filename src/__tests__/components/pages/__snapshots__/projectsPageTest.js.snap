@@ -7,15 +7,9 @@ exports[`ProjectsPage when finished loading correctly renders 1`] = `
   >
     Projects
   </PageHeader>
-  <div>
-    <Link
-      replace={false}
-      to="/clients/undefined"
-    />
-    <Component
-      projects="list-of-projects"
-    />
-  </div>
+  <Component
+    projects="list-of-projects"
+  />
   <div>
     <Connect(ProjectFormContainer) />
   </div>
@@ -30,7 +24,7 @@ exports[`ProjectsPage when loading renders with loading information 1`] = `
     Projects
   </PageHeader>
   <Alert
-    bsClass="info"
+    bsClass="alert"
     bsStyle="info"
     closeLabel="Close alert"
   >
@@ -50,8 +44,8 @@ exports[`ProjectsPage with error renders with error bar 1`] = `
     Projects
   </PageHeader>
   <Alert
-    bsClass="error"
-    bsStyle="info"
+    bsClass="alert"
+    bsStyle="danger"
     closeLabel="Close alert"
   >
     Could not load projects | 

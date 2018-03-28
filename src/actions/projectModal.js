@@ -70,7 +70,10 @@ export function createProject(clientName, params, api = apiClient) {
     };
 
     if (!client) {
-      throw new Error('Could not create client');
+      return dispatch(createdProjects({
+        error: 'could not create client',
+        data: null,
+      }));
     };
     
     Object.assign(params, { clientId: client.id });
