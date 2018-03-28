@@ -54,12 +54,12 @@ export class FetchHelper {
       response = await this._fetcher(params);
     }
     catch (e) {
-      error = e.message;
+      error = (e.response && e.response.data) || e.message;
       response = {};
     };
-
+    
     return {
-      error: error || (!this._isOk(response) && response.status),
+      error: error,
       data: response.data || response.status,
     };
   };
