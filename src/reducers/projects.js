@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { actions } from '../actions/projects';
+import { actions as modalActions } from '../actions/projectModal';
 
 function fetching(state = false, action) {
   switch (action.type) {
@@ -21,6 +22,11 @@ function fetched(state = initialState, action) {
       return {
         error: action.error,
         data: action.data,
+      };
+    case modalActions.CREATED:
+      return {
+        error: state.error,
+        data: state.data.concat([action.data]),
       };
     default:
       return state;
