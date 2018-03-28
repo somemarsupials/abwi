@@ -54,7 +54,7 @@ export class FetchHelper {
       response = await this._fetcher(params);
     }
     catch (e) {
-      error = e;
+      error = e.message;
       response = {};
     };
 
