@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Alert } from 'react-bootstrap';
 import { ProjectForm } from '../forms';
 
 export default function(props) {
@@ -8,7 +8,6 @@ export default function(props) {
       title: props.title,
       description: props.description,
     });
-    props.toggle();
   };
 
   return (
@@ -20,6 +19,11 @@ export default function(props) {
         </Modal.Header>
         <Modal.Body>
           <ProjectForm {...props} />
+          { props.error &&
+            <Alert bsStyle='danger'>
+              {props.error}
+            </Alert>
+          }
         </Modal.Body>
         <Modal.Footer>
           <Button bsClass='btn btn-primary' onClick={onSubmit}>
