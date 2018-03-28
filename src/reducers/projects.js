@@ -4,34 +4,24 @@ import { actions } from '../actions/projects';
 function fetching(state = false, action) {
   switch (action.type) {
     case actions.FETCH_LOADING:
-      return action.isLoading;
+      return action.active;
     default:
       return state;
   }
 };
 
-function fetchSuccess(state = [], action) {
-  switch (action.type) {
-    case actions.FETCH_SUCCESS:
-      return action.result;
-    default:
-      return state;
-  }
+const initialState = {
+  error: null,
+  data: [],
 };
 
-function fetchFail(state = null, action) {
+function fetched(state = initialState, action) {
   switch (action.type) {
-    case actions.FETCH_FAIL:
-      return action.error;
-    default:
-      return state;
-  }
-};
-
-function createModal(state = false, action) {
-  switch (action.type) {
-    case actions.TOGGLE_CREATE_MODAL:
-      return !state;
+    case actions.FETCHED:
+      return {
+        error: action.error,
+        data: action.data,
+      };
     default:
       return state;
   }
@@ -39,7 +29,5 @@ function createModal(state = false, action) {
 
 export default combineReducers({
   fetching: fetching,
-  data: fetchSuccess,
-  error: fetchFail,
-  createModal: createModal,
+  response: fetched,
 });

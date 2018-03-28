@@ -1,37 +1,13 @@
-import api from '../api';
-import { ThunkGenerator, buildApiClient } from '../lib';
-
-const CONTEXT = 'CLIENTS';
-const generator = new ThunkGenerator();
-const apiClient = buildApiClient(api);
+import baseUrl from '../api';
+import { actionGenerator, buildApiClient } from '../lib';
 
 // actions
 
-const actions = {
-  TOGGLE_CREATE_MODAL: `${CONTEXT}/TOGGLE_CREATE_MODAL`
-};
-
-const SUPPORTED = ['FETCH', 'CREATE']
-
-SUPPORTED.forEach(function(method) {
-  Object.assign(actions, generator.actions(CONTEXT, method));
-});
-
-export { actions };
-
-// requests
-
-async function fetchRequest() {
-  return await apiClient.clients.index();
-};
-
-async function createRequest(params) {
-  let config = { 
-    method: 'post', 
-    body: JSON.stringify(params) 
-  };
-  return await fetch(`${api}/clients`, config);
-};
+export const actions = actionGenerator('CLIENTS', [
+  'TOGGLE_CREATE_MODAL',
+  'FETCHING',
+  'FETCHED',
+]);
 
 // action generators
 
@@ -42,10 +18,27 @@ export function toggleCreateProjectModal(bool) {
   };
 };
 
+export function fetchingClients(bool) {
+  return {
+    type: actions.FETCHING,
+    active: bool,
+  };
+};
+
+export function fetchedClients(result) {
+  return {
+    type: actions.FETCHED,
+    error: result.error,
+    data: result.data,
+  };
+};
+
 // thunks
 
-export const fetchClients = 
-  generator.generate(fetchRequest, CONTEXT, 'FETCH');
-
-export const createClients = 
-  generator.generate(createRequest, CONTEXT, 'CREATE');
+export function fetchClients(api = buildApiClient(baseUrl)) {
+  return async function thunk(dispatch) {
+    dispatch(fetchingClients(true));
+    dispatch(fetchedClients(await api.clients.index()));
+    dispatch(fetchingClients(false));
+  };
+};

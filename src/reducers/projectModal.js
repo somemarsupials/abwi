@@ -10,6 +10,15 @@ function show(state = false, action) {
   }
 };
 
+function title(state = null, action) {
+  switch (action.type) {
+    case actions.TITLE_CHANGE:
+      return action.value;
+    default:
+      return state;
+  }
+};
+
 function description(state = null, action) {
   switch (action.type) {
     case actions.DESCRIPTION_CHANGE:
@@ -30,6 +39,7 @@ function client(state = null, action) {
 
 export default combineReducers({
   show: show,
+  title: title,
   description: description,
   client: client,
 });

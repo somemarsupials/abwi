@@ -4,25 +4,24 @@ import { actions } from '../actions/clients';
 function fetching(state = false, action) {
   switch (action.type) {
     case actions.FETCHING:
-      return action.isFetching;
+      return action.active;
     default:
       return state;
   }
 };
 
-function fetchSuccess(state = [], action) {
-  switch (action.type) {
-    case actions.FETCH_SUCCESS:
-      return action.result;
-    default:
-      return state;
-  }
+const initialState = {
+  error: null,
+  data: [],
 };
 
-function fetchFail(state = null, action) {
+function fetched(state = initialState, action) {
   switch (action.type) {
-    case actions.FETCH_FAIL:
-      return action.error;
+    case actions.FETCHED:
+      return {
+        error: action.error,
+        data: action.data,
+      };
     default:
       return state;
   }
@@ -30,6 +29,5 @@ function fetchFail(state = null, action) {
 
 export default combineReducers({
   fetching: fetching,
-  data: fetchSuccess,
-  error: fetchFail,
+  response: fetched,
 });

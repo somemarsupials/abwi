@@ -1,39 +1,36 @@
-import api from '../api';
-import { ThunkGenerator, buildApiClient } from '../lib';
-
-const CONTEXT = 'PROJECTS';
-const generator = new ThunkGenerator();
-const apiClient = buildApiClient(api);
+import baseUrl from '../api';
+import { actionGenerator, buildApiClient } from '../lib';
 
 // actions
 
-const actions = {};
-const SUPPORTED = ['FETCH', 'CREATE']
+export const actions = actionGenerator('CLIENT', [
+  'FETCHING',
+  'FETCHED',
+]);
 
-SUPPORTED.forEach(function(method) {
-  Object.assign(actions, generator.actions(CONTEXT, method));
-});
+// action generators
 
-export { actions };
-
-// requests
-
-async function fetchRequest() {
-  return await apiClient.projects.index();
+export function fetchingProjects(bool) {
+  return {
+    type: actions.FETCHING,
+    active: bool,
+  };
 };
 
-async function createRequest(params) {
-  let config = { 
-    method: 'post', 
-    body: JSON.stringify(params) 
+export function fetchedProjects(result) {
+  return {
+    type: actions.FETCHED,
+    error: result.error,
+    data: result.data,
   };
-  return await fetch(`${api}/projects`, config);
 };
 
 // thunks
 
-export const fetchProjects = 
-  generator.generate(fetchRequest, CONTEXT, 'FETCH');
-
-export const createProject = 
-  generator.generate(createRequest, CONTEXT, 'CREATE');
+export function fetchProjects(api = buildApiClient(baseUrl)) {
+  return async function thunk(dispatch) {
+    dispatch(fetchingProjects(true));
+    dispatch(fetchedProjects(await api.projects.index()));
+    dispatch(fetchingProjects(false));
+  };
+};

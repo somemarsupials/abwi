@@ -1,29 +1,42 @@
-import api from '../api';
-import { ThunkGenerator, buildApiClient } from '../lib';
-
-const CONTEXT = 'PROJECT';
-const generator = new ThunkGenerator();
-const apiClient = buildApiClient(api);
+import baseUrl from '../api';
+import { actionGenerator, buildApiClient } from '../lib';
 
 // actions
 
-const actions = {};
+export const actions = actionGenerator('CLIENT', [
+  'FETCHING',
+  'FETCHED',
+]);
 
-const SUPPORTED = ['FETCH'];
+// action generators
 
-SUPPORTED.forEach(function(method) {
-  Object.assign(actions, generator.actions(CONTEXT, method));
-});
+export function fetchingClient(bool) {
+  return {
+    type: actions.FETCHING,
+    active: bool,
+  };
+};
 
-export { actions };
-
-// requests
-
-async function fetchRequest(id) {
-  return await apiClient.clients.show([id], { detail: true });
+export function fetchedClient(result) {
+  return {
+    type: actions.FETCHED,
+    error: result.error,
+    data: result.data,
+  };
 };
 
 // thunks
 
-export const fetchClient = 
-  generator.generate(fetchRequest, CONTEXT, 'FETCH');
+export function fetchClient(id, api = buildApiClient(baseUrl)) {
+  return async function thunk(dispatch) {
+    dispatch(fetchingClient(true));
+
+    let client = await api.clients.show({
+      ids: [id],
+      params: { detail: true },
+    });
+
+    dispatch(fetchedClient(client));
+    dispatch(fetchingClient(false));
+  };
+};
