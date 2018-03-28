@@ -13,8 +13,8 @@ export class ClientsContainer extends Component {
   render() {
     return (
       <ClientsPage
-        clients={this.props.clients} 
-        error={this.props.error}
+        clients={this.props.response.data} 
+        error={this.props.response.error}
         fetching={this.props.fetching}
       />
     );
@@ -23,8 +23,7 @@ export class ClientsContainer extends Component {
 
 function mapStateToProps(state) {
   return { 
-    clients: state.clients.data,
-    error: state.clients.error,
+    response: state.clients.response,
     fetching: state.clients.fetching,
   };
 };

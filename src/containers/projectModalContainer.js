@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ProjectModal } from '../components/modals';
 
-import { 
-  toggleProjectModal, descriptionChange, clientChange 
-} from '../actions/projectModal';
+import { toggleProjectModal, titleChange, descriptionChange, clientChange } 
+  from '../actions/projectModal';
 
-import { createProject } from '../actions/projects';
+import { createProject } from '../actions/projectModal';
 
 class ProjectFormContainer extends Component {
   componentWillMount() {
@@ -22,19 +21,16 @@ class ProjectFormContainer extends Component {
 };
 
 function mapStateToProps(state) {
-  return {
-    show: state.projectModal.show,
-    description: state.projectModal.description,
-    client: state.projectModal.client,
-  };
+  return state.projectModal;
 };
 
 function mapDispatchToState(dispatch) {
   return {
     toggle: () => dispatch(toggleProjectModal()),
+    titleChange: string => dispatch(titleChange(string)),
     descriptionChange: string => dispatch(descriptionChange(string)),
     clientChange: string => dispatch(clientChange(string)),
-    onSubmit: params => dispatch(createProject(params)),
+    onSubmit: (name, params) => dispatch(createProject(name, params)),
   };
 };
 

@@ -13,8 +13,8 @@ export class ProjectContainer extends Component {
   render() {
     return (
       <ProjectPage
-        project={this.props.project} 
-        error={this.props.error}
+        project={this.props.response.data} 
+        error={this.props.response.error}
         fetching={this.props.fetching}
       />
     );
@@ -23,9 +23,8 @@ export class ProjectContainer extends Component {
 
 function mapStateToProps(state) {
   return { 
-    project: state.project.data,
-    error: state.project.error,
     fetching: state.project.fetching,
+    response: state.project.response,
   };
 };
 

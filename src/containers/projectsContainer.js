@@ -12,16 +12,19 @@ export class ProjectsContainer extends Component {
 
   render() {
     return (
-      <ProjectsPage {...this.props} />
+      <ProjectsPage
+        projects={this.props.response.data}
+        error={this.props.response.error}
+        fetching={this.props.fetching}
+      />
     );
   };
 };
 
 function mapStateToProps(state) {
   return { 
-    projects: state.projects.data,
-    error: state.projects.error,
     fetching: state.projects.fetching,
+    response: state.projects.response,
   };
 };
 
