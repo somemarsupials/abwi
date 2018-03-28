@@ -1,10 +1,10 @@
-let api;
+let baseUrl;
 
 if (window.location.hostname === 'localhost') {
-  api = 'http://localhost:5000';
+  baseUrl = 'http://localhost:5000';
 } else {
-  api = 'https://http://abwi.herokuapp.com';
+  baseUrl = 'https://http://abwi.herokuapp.com';
 };
 
-export default api;
+export default baseUrl;
 
