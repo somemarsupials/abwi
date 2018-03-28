@@ -24,9 +24,10 @@ function fetched(state = initialState, action) {
         data: action.data,
       };
     case modalActions.CREATED:
+      let data = state.data.concat(action.error ? [] : [action.data]);
       return {
         error: state.error,
-        data: state.data.concat([action.data]),
+        data: data,
       };
     default:
       return state;
