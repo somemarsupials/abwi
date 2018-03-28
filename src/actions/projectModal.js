@@ -8,6 +8,7 @@ export const actions = actionGenerator('PROJECT_MODAL', [
   'DESCRIPTION_CHANGE',
   'CLIENT_CHANGE',
   'TOGGLE_MODAL',
+  'CREATED',
 ]);
 
 // action generators
@@ -41,7 +42,7 @@ export function clientChange(string) {
 
 export function createdProjects(result) {
   return {
-    type: actions.FETCHED,
+    type: actions.CREATED,
     error: result.error,
     data: result.data,
   };
@@ -49,18 +50,18 @@ export function createdProjects(result) {
 
 // thunks
 
-let api = buildApiClient(baseUrl);
+let apiClient = buildApiClient(baseUrl);
 
-export function createProject(clientName, params, api = api) {
+export function createProject(clientName, params, api = apiClient) {
   return async function thunk(dispatch) {
     let error, response, client;
 
-    response = await api.clients.index([], { name: clientName });
+    response = await api.clients.index({ params: { name: clientName } });
     let data = response.data;
 
     if (!data || data.length === 0) {
-      response = await api.clients.create([], {}, { 
-        body: { name: clientName } 
+      response = await api.clients.create({
+        data: { name: clientName } 
       });
       client = response.data;
     } 
@@ -73,6 +74,8 @@ export function createProject(clientName, params, api = api) {
     };
     
     Object.assign(params, { clientId: client.id });
-    dispatch(await api.projects.create([], {}, { body: params }));
+
+    let result = await api.projects.create({ data: params });
+    dispatch(createdProjects(result));
   };
 };
