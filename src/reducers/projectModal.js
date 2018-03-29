@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import { actions } from '../actions/projectModal';
 
 function show(state = false, action) {
-  console.log(action);
   switch (action.type) {
     case actions.TOGGLE_MODAL:
       return !state;
