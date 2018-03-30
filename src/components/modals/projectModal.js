@@ -21,7 +21,7 @@ export default function(props) {
           <ProjectForm {...props} />
           { props.error &&
             <Alert bsStyle='danger'>
-              Error in creating project: {props.error}
+              Could not create project
             </Alert>
           }
         </Modal.Body>

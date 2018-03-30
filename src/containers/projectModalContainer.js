@@ -7,12 +7,7 @@ import { toggleProjectModal, titleChange, descriptionChange, clientChange }
 
 import { createProject } from '../actions/projectModal';
 
-class ProjectFormContainer extends Component {
-  componentWillMount() {
-    this.props.descriptionChange(null)
-    this.props.clientChange(null)
-  };
-
+class ProjectModalContainer extends Component {
   render() {
     return (
       <ProjectModal {...this.props} />
@@ -35,4 +30,4 @@ function mapDispatchToState(dispatch) {
 };
 
 export default 
-  connect(mapStateToProps, mapDispatchToState)(ProjectFormContainer)
+  connect(mapStateToProps, mapDispatchToState)(ProjectModalContainer)

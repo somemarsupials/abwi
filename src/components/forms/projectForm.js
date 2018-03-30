@@ -1,12 +1,14 @@
 import React from 'react';
-import { Form, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { Form, FormGroup, ControlLabel, FormControl, HelpBlock } 
+  from 'react-bootstrap';
 
 export default function(props) {
   let project = props.project || {};
+  let error = props.error || { fields: {} };
 
   return (
     <Form>
-      <FormGroup>
+      <FormGroup validationState={error.fields.title ? 'error' : null}>
         <ControlLabel>
           Project title
         </ControlLabel>
@@ -16,6 +18,9 @@ export default function(props) {
           value={project.title}
           onChange={props.titleChange}
         />
+        <HelpBlock>
+          {error.fields.title}
+        </HelpBlock>
       </FormGroup>
       <FormGroup>
         <ControlLabel>
@@ -23,7 +28,7 @@ export default function(props) {
         </ControlLabel>
         <FormControl 
           type='text' 
-          placeholder='Enter description...'
+          placeholder='Optional'
           value={project.description}
           onChange={props.descriptionChange}
         />
