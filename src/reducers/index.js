@@ -4,6 +4,7 @@ import projectReducer from './project';
 import clientsReducer from './clients';
 import clientReducer from './client';
 import projectModalReducer from './projectModal';
+import clientModalReducer from './clientModal';
 
 export default combineReducers({
   clients: clientsReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   projects: projectsReducer,
   project: projectReducer,
   projectModal: projectModalReducer,
+  clientModal: clientModalReducer,
 });
